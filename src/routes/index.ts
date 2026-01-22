@@ -19,7 +19,8 @@ router.get("/cliente/:id",clienteController.paginaCliente);
 router.get("/editarcliente/:id",clienteController.editarclienteGet);
 router.post("/clienteeditado/:id",clienteController.editarClientePost);
 
-router.get("/deletarcliente/:id",clienteController.deletarcliente);
+router.get("/deletarcliente/:id",clienteController.deletarclienteGet);
+router.delete("/deletarcliente/:id",clienteController.deletarclientePost);
 
 router.get("/calendario",calendarioController.calendario);
 

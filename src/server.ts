@@ -3,13 +3,13 @@ import path from 'path';
 import mustache from 'mustache-express';
 import dotenv from "dotenv";
 import mainRoutes from "./routes/index";
-
+import methodOverride from 'method-override';
 
 dotenv.config();
 
 const server = express();
 
-
+server.use(methodOverride("_method"));
 
 server.set("view engine", "mustache");
 server.set("views",path.join(__dirname,"views"));

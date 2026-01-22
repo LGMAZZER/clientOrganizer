@@ -10,8 +10,23 @@ export const home = async(req: Request, res: Response)=>{
     let year = new Date().getFullYear();
     let month = new Date().getMonth(); 
 
-    const dataInicio = new Date(year,month,day);
-    const dataFim = new Date(year,month,day+7);
+    
+
+    let today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    let weekDayOP= new Date().getDay();
+
+    let weekDays:string[] = [
+        "Domingo","Segunda","Terça","Quarta","Quinta","Sexta","sabado"
+    ];
+    let months:string[]=[
+        "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+        "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+    ];
+    let currentMonth = months[month];
+
+    let weekDay:string = weekDays[weekDayOP] as string;
 
     function getIntervaloSemana(dia: number, mes: number): [Date, Date] {
     const anoAtual = new Date().getFullYear();
@@ -38,8 +53,9 @@ export const home = async(req: Request, res: Response)=>{
 
     
     
-    let today = new Date();
-    today.setHours(0, 0, 0, 0);
+    
+
+
 
     const clientesAudiencia = await Cliente.findAll({
             
@@ -53,7 +69,8 @@ export const home = async(req: Request, res: Response)=>{
                 include: [
                     [fn('DAY', col('data_audiencia')), 'dia_audiencia'],
                     [literal("HOUR(CONVERT_TZ(data_audiencia, '+00:00', '-03:00'))"), 'hora_audiencia'],
-                    [literal("LPAD(MINUTE(CONVERT_TZ(data_audiencia, '+00:00', '-03:00')), 2, '0')"), 'minuto_audiencia']
+                    [literal("LPAD(MINUTE(CONVERT_TZ(data_audiencia, '+00:00', '-03:00')), 2, '0')"), 'minuto_audiencia'],
+                    [literal("CASE DAYOFWEEK(data_audiencia) WHEN 1 THEN 'Domingo' WHEN 2 THEN 'Segunda' WHEN 3 THEN 'Terça' WHEN 4 THEN 'Quarta' WHEN 5 THEN 'Quinta' WHEN 6 THEN 'Sexta' WHEN 7 THEN 'Sábado' END"), 'semana_audiencia'],
                 ]
             },
     
@@ -80,15 +97,13 @@ export const home = async(req: Request, res: Response)=>{
     
             const resultados = await Cliente.findAll({
                 where: {
-                    [coluna]: { [Op.ne]: null },
-                    [Op.and]: [
-                        where(fn("MONTH", col(coluna)), month + 1),
-                        where(fn("YEAR", col(coluna)), year),
-                    ]
+                    [coluna]: { [Op.ne]:null,[Op.between]:[today,dayInterval[1]] },
+                    
                 },
                 attributes: {
                     include: [
-                        [fn('DAY', col(coluna)), `dia_${sufixo}`]
+                        [fn('DAY', col(coluna)), `dia_${sufixo}`],
+                        [literal(`CASE DAYOFWEEK(${coluna}) WHEN 1 THEN 'Domingo' WHEN 2 THEN 'Segunda' WHEN 3 THEN 'Terça' WHEN 4 THEN 'Quarta' WHEN 5 THEN 'Quinta' WHEN 6 THEN 'Sexta' WHEN 7 THEN 'Sábado' END`), `semana_${sufixo}`],
                     ]
                 },
                 order: [[coluna, "ASC"]]
@@ -96,20 +111,40 @@ export const home = async(req: Request, res: Response)=>{
     
             clientesResults.push(...resultados);
         }
+        
+
+        
     
         
     
     
         
         const clientesComDia = [
-        //...clientesResults.map(cliente => cliente.toJSON()),
+        ...clientesResults.map(cliente => cliente.toJSON()),
         ...clientesAudiencia.map(cliente => cliente.toJSON()),
-    
-    
         ];
-    
 
+        // Ordenar todas as datas em ordem crescente
+        clientesComDia.sort((a, b) => {
+            // Pegar a data relevante de cada cliente
+            const getDataRelevante = (cliente: any): Date => {
+                const datasDisponiveis = [
+                    cliente.data_audiencia,
+                    cliente.data_pagamento,
+                    cliente.data_protocolo,
+                    cliente.data_contestacao,
+                    cliente.data_alegacoes,
+                    cliente.data_recurso,
+                    cliente.data_sentenca,
+                    cliente.data_transito_julgado,
+                ];
+                for (const data of datasDisponiveis) {
+                    if (data) return new Date(data);
+                }
+                return new Date(0);
+            };
+            return getDataRelevante(a).getTime() - getDataRelevante(b).getTime();
+        });
 
-
-    res.render("pages/home",{clientes:clientesComDia});
+    res.render("pages/home",{clientes:clientesComDia,weekDay,day,currentMonth,lastDay:day+7});
 };

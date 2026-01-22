@@ -91,12 +91,12 @@ export const calendario = async(req:Request,res:Response)=>{
             },
             order: [[coluna, "ASC"]]
         });
-
+        
         clientesResults.push(...resultados);
     }
 
     
-
+    
 
     
     const clientesComDia = [
@@ -105,6 +105,7 @@ export const calendario = async(req:Request,res:Response)=>{
 
 
     ];
+    
     
 
 

@@ -38,13 +38,17 @@ export const showCpfResgisterError = async(req:Request,res:Response)=>{
     res.render("pages/erroCpfCadastro");
 };
 
-export const deletarcliente = async(req:Request,res:Response)=>{
+export const deletarclienteGet = async(req:Request,res:Response)=>{
+    let idCliente:number = parseInt(req.params.id as string);
+    res.render("pages/clienteDelete", {id: idCliente});
+};
+
+export const deletarclientePost = async(req:Request,res:Response)=>{
     let idCliente:number = parseInt(req.params.id as string);
     let results = await Cliente.findAll({
         where:{id:idCliente}
     });
-    let submit = req.query.submit;
-    if(results.length>0&&submit){
+    if(results.length>0){
         let usuario = results[0];
         if(usuario){
             await usuario.destroy();
@@ -52,9 +56,7 @@ export const deletarcliente = async(req:Request,res:Response)=>{
             return;
         }
     }
-    
-    res.render("pages/clienteDelete", {id: idCliente});
-
+    res.redirect("/vizualizarclientes");
 };
 export const addProcessoGet = async(req:Request,res:Response)=>{
     let idCliente:number = parseInt(req.params.id as string);

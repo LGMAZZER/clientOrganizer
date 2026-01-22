@@ -1,48 +1,80 @@
 {{>partials/header}}
 <h2>Calendário - {{month}} de {{year}}</h2>
 
-<ul>
-{{#clientes}}
-    <li>
-        {{#dia_pagamento}}
-        <strong>{{nome_completo}} {{numero_processo}}</strong> - 
-        Pagamento Dia: {{dia_pagamento}}
-        {{/dia_pagamento}}
+<div class="calendario-container">
 
-        {{#dia_audiencia}}
-        <strong>{{nome_completo}} {{numero_processo}}</strong> -
-        Audiencia Dia: {{dia_audiencia}} Horario:{{hora_audiencia}}:{{minuto_audiencia}}
-        {{/dia_audiencia}}
-
-        {{#dia_protocolo}}
-        <strong>{{nome_completo}} {{numero_processo}}</strong> - Protocolo Dia: {{dia_protocolo}}
-        {{/dia_protocolo}}
-
-        {{#dia_contestacao}}
-        <strong>{{nome_completo}} {{numero_processo}}</strong> - Contestação Dia: {{dia_contestacao}}
-        {{/dia_contestacao}}
-
-        {{#dia_alegacoes}}
-        <strong>{{nome_completo}} {{numero_processo}}</strong> - Alegações Dia: {{dia_alegacoes}}
-        {{/dia_alegacoes}}
-
-        {{#dia_recurso}}
-        <strong>{{nome_completo}} {{numero_processo}}</strong> - Recurso Dia: {{dia_recurso}}
-        {{/dia_recurso}}
-
-        {{#dia_sentenca}}
-        <strong>{{nome_completo}} {{numero_processo}}</strong> - Sentença Dia: {{dia_sentenca}}
-        {{/dia_sentenca}}
-
-        {{#dia_transito}}
-        <strong>{{nome_completo}} {{numero_processo}}</strong> - Sentença Dia: {{dia_transito}}
-        {{/dia_transito}}
-
-            </li>
-        {{/clientes}}
+    <section>
+        <h3>Pagamentos</h3>
+        <ul>
+            {{#clientes}}
+                {{#dia_pagamento}}
+                <li><strong>{{nome_completo}} ({{numero_processo}})</strong> - Dia: {{dia_pagamento}}</li>
+                {{/dia_pagamento}}
+            {{/clientes}}
         </ul>
+    </section>
 
-<div>
+    <hr>
+
+    <section>
+        <h3>Audiências</h3>
+        <ul>
+            {{#clientes}}
+                {{#dia_audiencia}}
+                <li>
+                    <strong>{{nome_completo}} ({{numero_processo}})</strong> - 
+                    Dia: {{dia_audiencia}} | Horário: {{hora_audiencia}}:{{minuto_audiencia}}
+                </li>
+                {{/dia_audiencia}}
+            {{/clientes}}
+        </ul>
+    </section>
+
+    <hr>
+
+    <section>
+        <h3>Protocolos</h3>
+        <ul>
+            {{#clientes}}
+                {{#dia_protocolo}}
+                <li><strong>{{nome_completo}} ({{numero_processo}})</strong> - Dia: {{dia_protocolo}}</li>
+                {{/dia_protocolo}}
+            {{/clientes}}
+        </ul>
+    </section>
+
+    <hr>
+
+    <section>
+        <h3>Prazos e Sentenças</h3>
+        <ul>
+            {{#clientes}}
+                {{#dia_contestacao}}
+                <li><strong>{{nome_completo}} ({{numero_processo}})</strong> - Contestação: {{dia_contestacao}}</li>
+                {{/dia_contestacao}}
+                
+                {{#dia_alegacoes}}
+                <li><strong>{{nome_completo}} ({{numero_processo}})</strong> - Alegações: {{dia_alegacoes}}</li>
+                {{/dia_alegacoes}}
+                
+                {{#dia_recurso}}
+                <li><strong>{{nome_completo}} ({{numero_processo}})</strong> - Recurso: {{dia_recurso}}</li>
+                {{/dia_recurso}}
+
+                {{#dia_sentenca}}
+                <li><strong>{{nome_completo}} ({{numero_processo}})</strong> - Sentença: {{dia_sentenca}}</li>
+                {{/dia_sentenca}}
+
+                {{#dia_transito}}
+                <li><strong>{{nome_completo}} ({{numero_processo}})</strong> - Trânsito em Julgado: {{dia_transito}}</li>
+                {{/dia_transito}}
+            {{/clientes}}
+        </ul>
+    </section>
+
+</div>
+
+<div >
     <form method="GET" action="/calendario">
         <input type="hidden" name="year" value={{year}}>
         <input type="hidden" name="numMonth" value={{numMonth}}>
@@ -58,8 +90,10 @@
     </form>
 </div>
 
-<a href ="/">
-    <button type="submit">Voltar</button>
-</a>
+<div >
+    <a href ="/">
+        <button type="button">Voltar</button>
+    </a>
+</div>
 
 {{>partials/footer}}
