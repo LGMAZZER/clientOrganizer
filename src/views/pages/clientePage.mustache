@@ -1,0 +1,67 @@
+{{>partials/header}}
+
+<h2>Ficha do Cliente</h2>
+
+        <h3>Informações do Cliente</h3>
+    <ul>
+        <li><strong>Nome Completo:</strong> {{nome_completo}}</li>
+        <li><strong>Data de Nascimento:</strong> {{data_nascimento}}</li>
+        <li><strong>Estado Civil:</strong> {{estado_civil}}</li>
+        <li><strong>Naturalidade:</strong> {{naturalidade}}</li>
+        <li><strong>CPF:</strong> {{cpfEdited}}</li>
+        <li><strong>RG:</strong> {{rg}}</li>
+        <li><strong>Telefone de Contato:</strong> {{telefone_contato}}</li>
+        <li><strong>E-mail:</strong> {{email}}</li>
+        <li><strong>Endereço Residencial:</strong> {{endereco_residencial}}</li>
+        <li><strong>Profissão:</strong> {{profissao}}</li>
+        <li><strong>Nome do Cônjuge:</strong> {{nome_conjuge}}</li>
+        <li><strong>Profissão do Cônjuge:</strong> {{profissao_conjuge}}</li>
+        <li><strong>Número de Filhos:</strong> {{numero_filhos}}</li>
+        <li><strong>Idade dos Filhos:</strong> {{idade_filhos}}</li>
+        <li><strong>Empresa/Local de Trabalho:</strong> {{empresa_trabalho}}</li>
+        <li><strong>Telefone Comercial:</strong> {{telefone_comercial}}</li>
+        <li><strong>Endereço Comercial:</strong> {{endereco_comercial}}</li>
+    </ul>
+
+    <h3>Informações do Processo</h3>
+    <ul>
+        <li><strong>Ação:</strong> {{acao}}</li>
+        <li><strong>Número do Processo:</strong> {{numero_processo}}</li>
+        <li><strong>Vara:</strong> {{vara}}</li>
+        <li><strong>Data de Protocolo:</strong> {{data_protocolo}}</li>
+        <li><strong>Data da Audiência:</strong> {{data_audiencia}}</li>
+        <li><strong>Data da Contestação:</strong> {{data_contestacao}}</li>
+        <li><strong>Data das Alegações Finais:</strong> {{data_alegacoes}}</li>
+        <li><strong>Data do Recurso:</strong> {{data_recurso}}</li>
+        <li><strong>Data da Sentença:</strong> {{data_sentenca}}</li>
+        <li><strong>Data de Trânsito em Julgado:</strong> {{data_transito_julgado}}</li>
+    </ul>
+
+    <h3>Financeiro e Observações</h3>
+    <ul>
+        <li><strong>Honorários:</strong> {{honorarios}}</li>
+        <li><strong>Data do Pagamento:</strong> {{data_pagamento}}</li>
+        <li><strong>Plano de Pagamento:</strong> {{plano_pagamento}}</li>
+        <li><strong>Observações:</strong> {{observacoes}}</li>
+        <li><strong>Criado em:</strong> {{criado_em}}</li>
+    </ul>
+    <hr/>
+<a href="/editarcliente/{{id}}">
+        <button type="button">Editar Cliente</button>
+</a>
+<hr/>
+
+<a href="/editarprocesso/{{id}}">
+    <button type="button">Editar Processo</button>
+
+<hr/>
+<a href="/deletarcliente/{{id}}">
+        <button type="button">Deletar</button>
+</a>
+<hr/>
+<form action = "/vizualizarclientes">
+        <button type ="submit">Voltar</button>
+</form>
+
+
+{{>partials/footer}}

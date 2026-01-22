@@ -1,0 +1,17 @@
+{{>partials/header}}
+Deseja Deletar ?
+<hr/>
+<fieldset>
+<form method = "GET" action="/deletarcliente/{{id}}">
+<input type="hidden" id="submit" name="submit" value="true">
+<button type="submit">Deletar</button> 
+</form>
+</fieldset>
+<hr/>
+<form action="/cliente/{{id}}">
+    <button type="submit">Cancelar</button>
+</form>
+
+
+
+{{>partials/footer}}

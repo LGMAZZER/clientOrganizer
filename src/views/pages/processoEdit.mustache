@@ -1,0 +1,63 @@
+{{partials/header}}
+<h2>editar processo de: {{nome_completo}}</h2>
+
+<fieldset>
+<form method="POST" action ="/processoeditado/{{id}}">
+
+    <label for="honorarios">Honorários:</label>
+    <input type="number" id="honorarios" name="honorarios" step="0.01" value="{{honorarios}}">
+
+    <label for="data_pagamento">Data do Pagamento:</label>
+    <input type="date" id="data_pagamento" name="data_pagamento" value="{{data_pagamento}}">
+
+    <label for="plano_pagamento">Plano de Pagamento:</label>
+    <textarea id="plano_pagamento" name="plano_pagamento">{{plano_pagamento}}</textarea>
+
+    <label for="observacoes">Observações:</label>
+    <textarea id="observacoes" name="observacoes">{{observacoes}}</textarea>
+
+    <h3>Processo</h3>
+    <label for="acao">Ação:</label>
+    <input type="text" id="acao" name="acao" value="{{acao}}">
+
+    <label for="numero_processo">Número do Processo:</label>
+    <input type="text" id="numero_processo" name="numero_processo" value="{{numero_processo}}">
+
+    <label for="data_protocolo">Data de Protocolo:</label>
+    <input type="date" id="data_protocolo" name="data_protocolo" value="{{data_protocolo}}">
+
+    <label for="data_audiencia">Data da Audiencia:</label>
+    <input type="datetime-local" id="data_audiencia" name="data_audiencia" value="{{data_audiencia}}">
+
+    <label for="data_transito_julgado">Data do Trânsito em Julgado:</label>
+    <input type="date" id="data_transito_julgado" name="data_transito_julgado" value="{{data_transito_julgado}}">
+
+    <label for="vara">Vara:</label>
+    <input type="text" id="vara" name="vara" value="{{vara}}">
+
+    <label for="data_contestacao">Data da Contestação:</label>
+    <input type="date" id="data_contestacao" name="data_contestacao" value="{{data_contestacao}}">
+
+    <label for="data_alegacoes">Data das Alegações Finais:</label>
+    <input type="date" id="data_alegacoes" name="data_alegacoes" value="{{data_alegacoes}}">
+
+    <label for="data_recurso">Data do Recurso:</label>
+    <input type="date" id="data_recurso" name="data_recurso" value="{{data_recurso}}">
+
+    <label for="data_sentenca">Data da Sentença:</label>
+    <input type="date" id="data_sentenca" name="data_sentenca" value="{{data_sentenca}}">
+
+    <button action="submit">Salvar Alterações</button>
+
+
+</form>
+</fieldset>
+
+<hr/>
+<form action="/cliente/{{id}}">
+    <button type="submit">Cancelar</button>
+</form>
+
+
+
+{{partials/footer}}

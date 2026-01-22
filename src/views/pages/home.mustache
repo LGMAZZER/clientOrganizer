@@ -1,0 +1,66 @@
+{{>partials/header}}
+    olá user
+    <hr/>
+    <h2>Eventos Próximos</h2>
+
+    <ul>
+{{#clientes}}
+    <li>
+        {{#dia_pagamento}}
+        <strong>{{nome_completo}} {{numero_processo}}</strong> - 
+        Pagamento Dia: {{dia_pagamento}} 
+        {{/dia_pagamento}}
+
+        {{#dia_audiencia}}
+        <strong>{{nome_completo}} {{numero_processo}}</strong> -
+        Audiencia Dia: {{dia_audiencia}} Horario:{{hora_audiencia}}:{{minuto_audiencia}}
+        {{/dia_audiencia}}
+
+        {{#dia_protocolo}}
+        <strong>{{nome_completo}} {{numero_processo}}</strong> - Protocolo Dia: {{dia_protocolo}}
+        {{/dia_protocolo}}
+
+        {{#dia_contestacao}}
+        <strong>{{nome_completo}} {{numero_processo}}</strong> - Contestação Dia: {{dia_contestacao}}
+        {{/dia_contestacao}}
+
+        {{#dia_alegacoes}}
+        <strong>{{nome_completo}} {{numero_processo}}</strong> - Alegações Dia: {{dia_alegacoes}}
+        {{/dia_alegacoes}}
+
+        {{#dia_recurso}}
+        <strong>{{nome_completo}} {{numero_processo}}</strong> - Recurso Dia: {{dia_recurso}}
+        {{/dia_recurso}}
+
+        {{#dia_sentenca}}
+        <strong>{{nome_completo}} {{numero_processo}}</strong> - Sentença Dia: {{dia_sentenca}}
+        {{/dia_sentenca}}
+
+        {{#dia_transito}}
+        <strong>{{nome_completo}} {{numero_processo}}</strong> - Sentença Dia: {{dia_transito}}
+        {{/dia_transito}}
+
+            </li>
+        {{/clientes}}
+        </ul>
+    <hr/>
+
+
+    <form action = "/vizualizarclientes">
+        <button type ="submit">Vizualizar Clientes</button>
+    </form>
+    <hr/>
+
+
+    <form action = "/addcliente">
+        <button type ="submit">Adicionar Cliente</button>
+    </form>
+
+<a href="/calendario">
+    <button type="button">Calendario</button>
+</a>
+
+
+
+
+{{>partials/footer}}

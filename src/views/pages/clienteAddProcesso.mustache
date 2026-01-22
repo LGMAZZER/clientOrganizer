@@ -1,0 +1,79 @@
+{{>partials/header}}
+
+<h2>Editar Cliente: {{nome_completo}}</h2>
+<hr/>
+<fieldset>
+    <form method="POST" action="/clientenovoprocesso/{{id}}">
+        
+        <input type="hidden" name="nome_completo" value="{{nome_completo}}">
+        <input type="hidden" name="data_nascimento" value="{{data_nascimento}}">
+        <input type="hidden" name="estado_civil" value="{{estado_civil}}">
+        <input type="hidden" name="naturalidade" value="{{naturalidade}}">
+        <input type="hidden" name="cpf" value="{{cpf}}">
+        <input type="hidden" name="rg" value="{{rg}}">
+        <input type="hidden" name="telefone_contato" value="{{telefone_contato}}">
+        <input type="hidden" name="endereco_residencial" value="{{endereco_residencial}}">
+        <input type="hidden" name="email" value="{{email}}">
+        <input type="hidden" name="profissao" value="{{profissao}}">
+        <input type="hidden" name="nome_conjuge" value="{{nome_conjuge}}">
+        <input type="hidden" name="profissao_conjuge" value="{{profissao_conjuge}}">
+        <input type="hidden" name="numero_filhos" value="{{numero_filhos}}">
+        <input type="hidden" name="idade_filhos" value="{{idade_filhos}}">
+        <input type="hidden" name="empresa_trabalho" value="{{empresa_trabalho}}">
+        <input type="hidden" name="endereco_comercial" value="{{endereco_comercial}}">
+        <input type="hidden" name="telefone_comercial" value="{{telefone_comercial}}">
+
+        <label for="honorarios">Honorários:</label>
+        <input type="number" id="honorarios" name="honorarios" step="0.01">
+
+        <label for="data_pagamento">Data do Pagamento:</label>
+        <input type="date" id="data_pagamento" name="data_pagamento">
+
+        <label for="plano_pagamento">Plano de Pagamento:</label>
+        <textarea id="plano_pagamento" name="plano_pagamento"></textarea>
+
+        <label for="observacoes">Observações:</label>
+        <textarea id="observacoes" name="observacoes"></textarea>
+
+        <h3>Processo</h3>
+        <label for="acao">Ação:</label>
+        <input type="text" id="acao" name="acao">
+
+        <label for="numero_processo">Número do Processo:</label>
+        <input type="text" id="numero_processo" name="numero_processo">
+
+        <label for="data_protocolo">Data de Protocolo:</label>
+        <input type="date" id="data_protocolo" name="data_protocolo">
+
+        <label for="data_audiencia">Data da Audiência:</label>
+        <input type="datetime-local" id="data_audiencia" name="data_audiencia">
+
+        <label for="data_transito_julgado">Data do Trânsito em Julgado:</label>
+        <input type="date" id="data_transito_julgado" name="data_transito_julgado">
+
+        <label for="vara">Vara:</label>
+        <input type="text" id="vara" name="vara">
+
+        <label for="data_contestacao">Data da Contestação:</label>
+        <input type="date" id="data_contestacao" name="data_contestacao">
+
+        <label for="data_alegacoes">Data das Alegações Finais:</label>
+        <input type="date" id="data_alegacoes" name="data_alegacoes">
+
+        <label for="data_recurso">Data do Recurso:</label>
+        <input type="date" id="data_recurso" name="data_recurso">
+
+        <label for="data_sentenca">Data da Sentença:</label>
+        <input type="date" id="data_sentenca" name="data_sentenca">
+
+        <button type="submit">Salvar Alterações</button>
+    </form>
+</fieldset>
+
+<a href ="/vizualizarclientes">
+<button type="submit">voltar</button>
+</a>
+
+
+
+{{>partials/footer}}

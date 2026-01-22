@@ -1,0 +1,46 @@
+{{>partials/header}}
+<h2>Lista de Clientes</h2>
+<hr/>
+<fieldset>
+<form method = "GET">
+<input type="text" id="buscar" name="buscar">
+<button type="submit">Buscar</button> 
+</form>
+</fieldset>
+
+
+<hr/>
+<ul>
+    {{#users}}
+    <li>Nome: {{nome_completo}} N Processo {{numero_processo}} 
+    <a href="/cliente/{{id}}">
+        <button type="button">Visualizar Detalhes</button>
+    </a>
+    <a href="/clienteaddprocesso/{{id}}">
+        <button type="button">Cadastrar outro processo</button>
+    </a>
+    {{/users}}
+</ul>
+<p>Pagina {{page}}</p>
+    
+    <form method ="GET" action = "/vizualizarclientes">
+    <input type = "hidden" id="offset" name = "offset" value = "{{offset}}">
+    <input type = "hidden" id="page" name = "page" value = "{{page}}">
+    <input type = "hidden" id="mais" name = "mais" value = "true">
+    <button type="submit">+ Próxima</button>
+    </form>
+
+    
+    <form method ="GET" action = "/vizualizarclientes">
+    <input type = "hidden" id="offset" name = "offset" value = "{{offset}}">
+    <input type = "hidden" id="page" name = "page" value = "{{page}}">
+    <input type = "hidden" id="menos" name = "menos" value = "true">
+    <button type="submit">- Anterior</button>
+    </form>
+    
+
+<form action = "/">
+        <button type ="submit">Voltar</button>
+</form>
+    <hr/>
+{{>partials/footer}}
