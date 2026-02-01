@@ -4,7 +4,8 @@ import { Cliente } from "../models/Cliente";
 
 export const calendario = async(req:Request,res:Response)=>{
 
-    
+
+    let month_dateNum = new Date().getMonth();
 
     let yearOp = new Date().getFullYear();
 
@@ -15,11 +16,13 @@ export const calendario = async(req:Request,res:Response)=>{
         "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
     ];
 
-    let numMonth:number = parseInt(req.query.numMonth as string) || 0;
+    let numMonth:number = parseInt(req.query.numMonth as string) || month_dateNum;
     let month:string = months[numMonth] as string;
 
     if(req.query.mais){
+        console.log(numMonth);
         numMonth++;
+        
         if(numMonth>11){
             numMonth=0;
             year++;
@@ -28,12 +31,21 @@ export const calendario = async(req:Request,res:Response)=>{
         
     }
     if(req.query.menos&&numMonth>0){
+        console.log(numMonth);
         numMonth--;
         month = months[numMonth] as string;
-    } else if(req.query.menos && numMonth===0){
+    } 
+    if(req.query.menos && numMonth===0){
         numMonth=11;
         year--;
         month = months[numMonth] as string;
+    }
+
+    if(req.query.month_dateNum){
+        if(parseInt(req.query.month_dateNum as string)<=12){
+            numMonth = parseInt(req.query.month_dateNum as string)-1;
+            month = months[numMonth] as string;
+        }
     }
 
     
@@ -107,10 +119,10 @@ export const calendario = async(req:Request,res:Response)=>{
     ];
     
     
+ 
 
 
-
-    return res.render("pages/calendario",{clientes: clientesComDia, month, year, numMonth});
+    return res.render("pages/calendario",{clientes: clientesComDia, month, year, numMonth,month_dateNum});
 };
 
 

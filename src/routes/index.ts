@@ -2,8 +2,8 @@ import { Router,Request,Response } from "express";
 import * as clienteController from "../controllers/clienteController";
 import * as homeController from "../controllers/homeController";
 import * as calendarioController from "../controllers/calendarioController";
-
-
+import * as arquivoController from "../controllers/arquivoController";
+import * as multer from "../config/multer";
 
 const router = Router();
 
@@ -32,8 +32,13 @@ router.post("/processoeditado/:id",clienteController.editarProcessoPost);
 
 router.get("/errocadastro",clienteController.showCpfResgisterError);
 
+router.get("/arquivosprocessos/:id",arquivoController.showArquivo);
 
+router.get("/uploadarquivo/:id",arquivoController.uploadArquivoGet);
+router.post("/uploadnovoarquivo/:id",multer.upload.single("arquivo"),arquivoController.uploadArquivoPost);
 
+router.get("/arquivodelete/:id",arquivoController.arquivoDeleteGet);
+router.delete("/arquivodelete/:id",arquivoController.arquivoDeletePost);
 
  
 

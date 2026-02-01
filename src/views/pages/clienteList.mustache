@@ -12,13 +12,25 @@
 <hr/>
 <ul>
     {{#users}}
-    <li>Nome: {{nome_completo}} N Processo {{numero_processo}} 
-    <a href="/cliente/{{id}}">
-        <button type="button">Visualizar Detalhes</button>
-    </a>
+    <li>Nome: {{nome_completo}}  
+    {{#numero_processo}}N Processo {{numero_processo}} 
     <a href="/clienteaddprocesso/{{id}}">
         <button type="button">Cadastrar outro processo</button>
     </a>
+    {{/numero_processo}}
+
+    {{^numero_processo}}
+    Processo nao Cadastrado
+
+    <a href="/editarprocesso/{{id}}">
+    <button type="button">Cadastrar Processo</button>
+    </a>
+
+    {{/numero_processo}}
+    <a href="/cliente/{{id}}">
+        <button type="button">Visualizar Detalhes</button>
+    </a>
+    
     {{/users}}
 </ul>
 <p>Pagina {{page}}</p>

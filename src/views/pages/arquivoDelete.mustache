@@ -1,0 +1,16 @@
+{{>partials/header}}
+
+<h2>Deseja Deletar?</h2>
+
+<fieldset>
+<form method="POST" action="/arquivodelete/{{id}}?_method=DELETE">
+    <button type="submit">Deletar</button>
+</form>
+</fieldset>
+
+<a href="/arquivosprocessos/{{idProcess}}">
+    <button type="button">Cancelar</button>
+</a>
+
+
+{{>partials/footer}}

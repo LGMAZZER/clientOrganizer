@@ -1,6 +1,9 @@
 import { Response,Request } from "express";
 import{ Op, where } from "sequelize";
 import { Cliente } from "../models/Cliente";
+import { Arquivo } from "../models/Arquivo";
+import path from "path";
+import fs from "fs";
 
 // Função para remover . e - do CPF
 const limparCPF = (cpf: string | null | undefined): string | null | undefined => {
@@ -44,8 +47,8 @@ export const deletarclienteGet = async(req:Request,res:Response)=>{
 };
 
 export const deletarclientePost = async(req:Request,res:Response)=>{
-    let idCliente:number = parseInt(req.params.id as string);
-    let results = await Cliente.findAll({
+    const idCliente:number = parseInt(req.params.id as string);
+   /* let results = await Cliente.findAll({
         where:{id:idCliente}
     });
     if(results.length>0){
@@ -56,7 +59,36 @@ export const deletarclientePost = async(req:Request,res:Response)=>{
             return;
         }
     }
+    res.redirect("/vizualizarclientes");*/
+try{
+    const cliente = await Cliente.findByPk(idCliente);
+
+    const arquivo = await Arquivo.findOne({where:{processo_id:idCliente}});
+
+    if(!cliente){
+        return res.redirect("/");
+    }
+
+    if(arquivo){
+    const caminhoOp = path.join(__dirname, '../..', 'public', arquivo.caminho);
+    const caminho = path.dirname(caminhoOp);
+    if(fs.existsSync(caminho)){
+        fs.rmSync(caminho,{ recursive: true, force: true });
+    }
+    await Arquivo.destroy({where:{processo_id:idCliente}});
+
+    }
+
+
+
+    await cliente.destroy();
+
     res.redirect("/vizualizarclientes");
+    }catch(error){
+        console.error("Erro ao deletar cliente:", error);
+        return res.status(500).send("Erro ao deletar cliente.");
+      
+    }   
 };
 export const addProcessoGet = async(req:Request,res:Response)=>{
     let idCliente:number = parseInt(req.params.id as string);
@@ -382,13 +414,10 @@ export const clienteAddPost = async (req: Request, res: Response) => {
         console.log(userOP);
         
         if(userOP.length===0){
-        await Cliente.create(dados);
-        let user = await Cliente.findOne({
-            where:{
-                numero_processo:dados.numero_processo
-            }
-        });
+        const user = await Cliente.create(dados);
+        
         let op = user?.id;
+        
         await user?.update({id2:op});
 
         

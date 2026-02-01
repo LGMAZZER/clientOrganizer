@@ -53,7 +53,7 @@ export const home = async(req: Request, res: Response)=>{
 
     
     
-    
+     
 
 
 
@@ -146,5 +146,5 @@ export const home = async(req: Request, res: Response)=>{
             return getDataRelevante(a).getTime() - getDataRelevante(b).getTime();
         });
 
-    res.render("pages/home",{clientes:clientesComDia,weekDay,day,currentMonth,lastDay:day+7});
+    res.render("pages/home",{clientes:clientesComDia,weekDay,day,currentMonth,lastDay:dayInterval[1]?.getDate()});
 };

@@ -104,7 +104,7 @@ export const Cliente = sequelize.define<UserInstance>("Cliente", {
     numero_processo: {
         type: DataTypes.STRING,
         unique: true,
-        allowNull: false
+        
     },
     data_protocolo: {
         type: DataTypes.DATEONLY

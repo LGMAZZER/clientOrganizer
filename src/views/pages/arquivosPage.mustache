@@ -1,0 +1,30 @@
+{{>partials/header}}
+
+<h2>Arquivos do Processo</h2>
+
+<a href="/uploadarquivo/{{processo.id}}">
+    <button>Fazer Upload</button>
+</a>
+
+{{#showArquivos}}
+<ul>
+{{#arquivos}}
+    <li>
+        <a href="/{{caminho}}" target="_blank">{{nome_original}}</a> 
+        <a href="/arquivodelete/{{id}}">
+            <button type="submit">Deletar</button>
+        </a>
+    </li>
+{{/arquivos}}
+</ul>
+{{/showArquivos}}
+
+{{^showArquivos}}
+<p>Nenhum arquivo encontrado.</p>
+{{/showArquivos}}
+
+<a href = "/cliente/{{processo.id}}">
+    <button type="submit">Voltar</button>
+</a>
+
+{{>partials/footer}}
