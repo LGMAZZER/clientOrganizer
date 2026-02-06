@@ -1,58 +1,63 @@
 {{>partials/header}}
+
 <h2>Lista de Clientes</h2>
-<hr/>
-<fieldset>
-<form method = "GET">
-<input type="text" id="buscar" name="buscar">
-<button type="submit">Buscar</button> 
-</form>
-</fieldset>
 
+<div class="search-box">
+    <fieldset>
+        <form method="GET">
+            <input type="text" id="buscar" name="buscar" placeholder="Buscar cliente...">
+            <button type="submit">Buscar</button> 
+        </form>
+    </fieldset>
+</div>
 
-<hr/>
 <ul>
     {{#users}}
-    <li>Nome: {{nome_completo}}  
-    {{#numero_processo}}N Processo {{numero_processo}} 
-    <a href="/clienteaddprocesso/{{id}}">
-        <button type="button">Cadastrar outro processo</button>
-    </a>
-    {{/numero_processo}}
+    <li>
+        <span><strong>Nome:</strong> {{nome_completo}}</span>
+        {{#numero_processo}}
+            <span>Nº Processo: {{numero_processo}}</span>
+            <a href="/clienteaddprocesso/{{id}}">
+                <button type="button">Novo Processo</button>
+            </a>
+        {{/numero_processo}}
 
-    {{^numero_processo}}
-    Processo nao Cadastrado
-
-    <a href="/editarprocesso/{{id}}">
-    <button type="button">Cadastrar Processo</button>
-    </a>
-
-    {{/numero_processo}}
-    <a href="/cliente/{{id}}">
-        <button type="button">Visualizar Detalhes</button>
-    </a>
-    
+        {{^numero_processo}}
+            <span>Processo não cadastrado</span>
+            <a href="/editarprocesso/{{id}}">
+                <button type="button">Cadastrar Processo</button>
+            </a>
+        {{/numero_processo}}
+        
+        <a href="/cliente/{{id}}">
+            <button type="button">Ver Detalhes</button>
+        </a>
+    </li>
     {{/users}}
 </ul>
-<p>Pagina {{page}}</p>
-    
-    <form method ="GET" action = "/vizualizarclientes">
-    <input type = "hidden" id="offset" name = "offset" value = "{{offset}}">
-    <input type = "hidden" id="page" name = "page" value = "{{page}}">
-    <input type = "hidden" id="mais" name = "mais" value = "true">
-    <button type="submit">+ Próxima</button>
-    </form>
 
-    
-    <form method ="GET" action = "/vizualizarclientes">
-    <input type = "hidden" id="offset" name = "offset" value = "{{offset}}">
-    <input type = "hidden" id="page" name = "page" value = "{{page}}">
-    <input type = "hidden" id="menos" name = "menos" value = "true">
-    <button type="submit">- Anterior</button>
+<p>Página {{page}}</p>
+
+<div class="pagination">
+    <form method="GET" action="/vizualizarclientes">
+        <input type="hidden" id="offset" name="offset" value="{{offset}}">
+        <input type="hidden" id="page" name="page" value="{{page}}">
+        <input type="hidden" id="menos" name="menos" value="true">
+        <button type="submit">« Anterior</button>
     </form>
     
+    <form method="GET" action="/vizualizarclientes">
+        <input type="hidden" id="offset" name="offset" value="{{offset}}">
+        <input type="hidden" id="page" name="page" value="{{page}}">
+        <input type="hidden" id="mais" name="mais" value="true">
+        <button type="submit">Próxima »</button>
+    </form>
+</div>
 
-<form action = "/">
-        <button type ="submit">Voltar</button>
-</form>
-    <hr/>
+<div class="action-buttons">
+    <form action="/">
+        <button type="submit" class="btn-secondary">Voltar</button>
+    </form>
+</div>
+
 {{>partials/footer}}

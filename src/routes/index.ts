@@ -4,9 +4,16 @@ import * as homeController from "../controllers/homeController";
 import * as calendarioController from "../controllers/calendarioController";
 import * as arquivoController from "../controllers/arquivoController";
 import * as multer from "../config/multer";
-
+import * as loginController from "../controllers/loginContoller";
 const router = Router();
 
+router.get("/loginerrado",loginController.loginErrado);
+router.get("/login",loginController.loginGet);
+router.post("/login",loginController.loginPost);
+router.get("/logout",loginController.logout);
+
+
+router.use(loginController.requireAuth);
 
 router.get('/',homeController.home);
 

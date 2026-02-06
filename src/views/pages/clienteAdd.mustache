@@ -1,9 +1,10 @@
 {{>partials/header}}
-Adicionar Cliente
-<hr/>
-    <fieldset>
-    <form method="POST" action ="/novocliente">
-    <label for="nome_completo">Nome Completo:</label>
+
+<h2>Adicionar Cliente</h2>
+
+<fieldset>
+    <form method="POST" action="/novocliente">
+        <label for="nome_completo">Nome Completo:</label>
     <input type="text" id="nome_completo" name="nome_completo" required>
 
     <label for="data_nascimento">Data de Nascimento:</label>
@@ -98,14 +99,14 @@ Adicionar Cliente
     <label for="data_sentenca">Data da Sentença:</label>
     <input type="date" id="data_sentenca" name="data_sentenca">
 
+        <button type="submit" class="btn-success">Enviar Cadastro</button>
+    </form>
+</fieldset>
 
+<div class="action-buttons">
+    <form action="/">
+        <button type="submit" class="btn-secondary">Cancelar</button>
+    </form>
+</div>
 
-    <button type="submit">Enviar Cadastro</button>
-</form>
-    </fieldset>
-<hr/>
-<form action = "/">
-        <button type ="submit">Cancelar</button>
-</form>
-    <hr/>
-    {{>partials/footer}}
+{{>partials/footer}}

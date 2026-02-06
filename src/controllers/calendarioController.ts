@@ -22,7 +22,7 @@ export const calendario = async(req:Request,res:Response)=>{
     if(req.query.mais){
         console.log(numMonth);
         numMonth++;
-        
+         
         if(numMonth>11){
             numMonth=0;
             year++;
@@ -46,6 +46,10 @@ export const calendario = async(req:Request,res:Response)=>{
             numMonth = parseInt(req.query.month_dateNum as string)-1;
             month = months[numMonth] as string;
         }
+    }
+
+    if(req.query.year_dateNum){
+        year = parseInt(req.query.year_dateNum as string);
     }
 
     

@@ -1,16 +1,17 @@
 {{>partials/header}}
-Deseja Deletar ?
-<hr/>
-<fieldset>
-<form method="POST" action="/deletarcliente/{{id}}?_method=DELETE">
-<button type="submit">Deletar</button> 
-</form>
-</fieldset>
-<hr/>
-<form action="/cliente/{{id}}">
-    <button type="submit">Cancelar</button>
-</form>
 
+<div class="delete-confirm">
+    <h2>Deseja Deletar?</h2>
+    
+    <fieldset>
+        <form method="POST" action="/deletarcliente/{{id}}?_method=DELETE">
+            <button type="submit" class="btn-danger">Deletar</button> 
+        </form>
+    </fieldset>
 
+    <form action="/cliente/{{id}}">
+        <button type="submit" class="btn-secondary">Cancelar</button>
+    </form>
+</div>
 
 {{>partials/footer}}

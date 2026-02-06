@@ -2,7 +2,8 @@
 
 <h2>Ficha do Cliente</h2>
 
-        <h3>Informações do Cliente</h3>
+<div class="client-info">
+    <h3>Informações do Cliente</h3>
     <ul>
         <li><strong>Nome Completo:</strong> {{nome_completo}}</li>
         <li><strong>Data de Nascimento:</strong> {{data_nascimento}}</li>
@@ -45,34 +46,32 @@
         <li><strong>Observações:</strong> {{observacoes}}</li>
         <li><strong>Criado em:</strong> {{criado_em}}</li>
     </ul>
-    <hr/>
+</div>
 
-<a href="/arquivosprocessos/{{id}}">
-        <button type = "button">Vizualizar Arquivos</button>
-</a>
+<div class="action-buttons">
+    <a href="/arquivosprocessos/{{id}}">
+        <button type="button">Visualizar Arquivos</button>
+    </a>
 
-<a href="/uploadarquivo/{{id}}">
-        <button type = "button">Upload Arquivos</button>
-</a>
+    <a href="/uploadarquivo/{{id}}">
+        <button type="button">Upload Arquivos</button>
+    </a>
 
-<hr/>
-
-<a href="/editarcliente/{{id}}">
+    <a href="/editarcliente/{{id}}">
         <button type="button">Editar Cliente</button>
-</a>
-<hr/>
+    </a>
 
-<a href="/editarprocesso/{{id}}">
-    <button type="button">Editar Processo</button>
-</a>
-<hr/>
-<a href="/deletarcliente/{{id}}">
-        <button type="button">Deletar</button>
-</a>
-<hr/>
-<form action = "/vizualizarclientes">
-        <button type ="submit">Voltar</button>
-</form>
+    <a href="/editarprocesso/{{id}}">
+        <button type="button">Editar Processo</button>
+    </a>
 
+    <a href="/deletarcliente/{{id}}">
+        <button type="button" class="btn-danger">Deletar</button>
+    </a>
+
+    <form action="/vizualizarclientes">
+        <button type="submit" class="btn-secondary">Voltar</button>
+    </form>
+</div>
 
 {{>partials/footer}}

@@ -1,4 +1,5 @@
-{{partials/header}}
+{{>partials/header}}
+
 <h2>Processo de: {{nome_completo}}</h2>
 
 <fieldset>
@@ -47,17 +48,14 @@
     <label for="data_sentenca">Data da Sentença:</label>
     <input type="date" id="data_sentenca" name="data_sentenca" value="{{data_sentenca}}">
 
-    <button action="submit">Salvar Alterações</button>
-
-
+    <button type="submit" class="btn-success">Salvar Alterações</button>
 </form>
 </fieldset>
 
-<hr/>
-<form action="/cliente/{{id}}">
-    <button type="submit">Cancelar</button>
-</form>
+<div class="action-buttons">
+    <form action="/cliente/{{id}}">
+        <button type="submit" class="btn-secondary">Cancelar</button>
+    </form>
+</div>
 
-
-
-{{partials/footer}}
+{{>partials/footer}}

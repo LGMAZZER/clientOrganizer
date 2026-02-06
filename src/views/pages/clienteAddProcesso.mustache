@@ -1,7 +1,7 @@
 {{>partials/header}}
 
-<h2>Editar Cliente: {{nome_completo}}</h2>
-<hr/>
+<h2>Novo Processo: {{nome_completo}}</h2>
+
 <fieldset>
     <form method="POST" action="/clientenovoprocesso/{{id}}">
         
@@ -66,14 +66,14 @@
         <label for="data_sentenca">Data da Sentença:</label>
         <input type="date" id="data_sentenca" name="data_sentenca">
 
-        <button type="submit">Salvar Alterações</button>
+        <button type="submit" class="btn-success">Salvar Alterações</button>
     </form>
 </fieldset>
 
-<a href ="/vizualizarclientes">
-<button type="submit">voltar</button>
-</a>
-
-
+<div class="action-buttons">
+    <a href="/vizualizarclientes">
+        <button type="button" class="btn-secondary">Voltar</button>
+    </a>
+</div>
 
 {{>partials/footer}}

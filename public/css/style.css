@@ -1,0 +1,491 @@
+/* ===== RESET E BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== FONTES ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 100%);
+    min-height: 100vh;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ===== CONTAINER PRINCIPAL ===== */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    background: #ffffff;
+    min-height: 100vh;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== CABEÇALHO ===== */
+h1 {
+    text-align: center;
+    color: #1a472a;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #2d5a3d;
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    text-align: center;
+    color: #1e5631;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 20px 0;
+}
+
+h3 {
+    color: #2d5a3d;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 25px 0 15px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #d4e9d7;
+}
+
+/* ===== SEPARADORES ===== */
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #ccc, transparent);
+    margin: 20px 0;
+}
+
+/* ===== PARÁGRAFOS E TEXTOS ===== */
+p {
+    text-align: center;
+    margin: 15px 0;
+    color: #555;
+    font-size: 1rem;
+}
+
+/* ===== BOTÕES ===== */
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px;
+    min-height: 45px;
+    padding: 12px 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #fff;
+    background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 100%);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(26, 71, 42, 0.3);
+    margin: 5px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(26, 71, 42, 0.4);
+    background: linear-gradient(135deg, #153d23 0%, #245a32 100%);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Botão Secundário */
+button.btn-secondary,
+form[action*="Cancelar"] button,
+form[action="/"] button,
+a[href*="Cancelar"] button {
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+}
+
+button.btn-secondary:hover {
+    background: linear-gradient(135deg, #5a6268 0%, #3d4347 100%);
+}
+
+/* Botão de Perigo (Deletar) */
+button.btn-danger,
+form[action*="DELETE"] button,
+a[href*="deletar"] button,
+a[href*="delete"] button {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+button.btn-danger:hover {
+    background: linear-gradient(135deg, #c82333 0%, #a71d2a 100%);
+}
+
+/* Botão de Sucesso */
+button.btn-success,
+button[type="submit"]:not([class]) {
+    background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 100%);
+}
+
+/* ===== LINKS ===== */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a button {
+    width: auto;
+}
+
+/* ===== FORMULÁRIOS ===== */
+fieldset {
+    border: 2px solid #d4e9d7;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px auto;
+    max-width: 700px;
+    background: #f5faf6;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+label {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    font-weight: 500;
+    color: #1a472a;
+    margin-top: 10px;
+    font-size: 0.95rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="file"],
+textarea {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 15px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #2d5a3d;
+    box-shadow: 0 0 0 3px rgba(45, 90, 61, 0.1);
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+input[type="file"] {
+    padding: 10px;
+    background: #f8f9fa;
+    cursor: pointer;
+}
+
+/* ===== LISTAS ===== */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+li {
+    background: #f5faf6;
+    margin: 10px 0;
+    padding: 15px 20px;
+    border-radius: 10px;
+    border-left: 4px solid #2d5a3d;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+li:hover {
+    background: #e8f5e9;
+    transform: translateX(5px);
+}
+
+li strong {
+    color: #1a472a;
+}
+
+/* ===== SEÇÕES DO CALENDÁRIO ===== */
+.calendario-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.calendario-container section {
+    background: #f5faf6;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 15px 0;
+}
+
+.calendario-container section h3 {
+    color: #1a472a;
+    border-bottom: 2px solid #2d5a3d;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+/* ===== NAVEGAÇÃO DO CALENDÁRIO ===== */
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.nav-buttons form {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-buttons input[type="number"] {
+    width: 100px;
+    text-align: center;
+}
+
+/* ===== ÁREA DE EVENTOS NA HOME ===== */
+.eventos-container {
+    background: #f5faf6;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.eventos-container h2 {
+    color: #1a472a;
+    margin-bottom: 15px;
+}
+
+/* ===== BOTÕES DE AÇÃO NA HOME ===== */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.action-buttons form,
+.action-buttons a {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+}
+
+.action-buttons button {
+    width: 100%;
+}
+
+/* ===== FICHA DO CLIENTE ===== */
+.client-info ul {
+    background: #f5faf6;
+    border-radius: 12px;
+    padding: 25px;
+}
+
+.client-info li {
+    border-left: none;
+    border-bottom: 1px solid #d4e9d7;
+    border-radius: 0;
+    margin: 0;
+    padding: 12px 0;
+}
+
+.client-info li:last-child {
+    border-bottom: none;
+}
+
+/* ===== ÁREA DE ARQUIVOS ===== */
+.arquivos-list li {
+    justify-content: space-between;
+}
+
+.arquivos-list li a:first-child {
+    color: #1a472a;
+    font-weight: 500;
+}
+
+.arquivos-list li a:first-child:hover {
+    text-decoration: underline;
+}
+
+/* ===== PAGINAÇÃO ===== */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.pagination form {
+    display: inline-flex;
+}
+
+/* ===== BUSCA ===== */
+.search-box {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.search-box input {
+    max-width: 300px;
+}
+
+.search-box form {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* ===== MENSAGEM DE SAUDAÇÃO ===== */
+.greeting {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin: 15px 0;
+}
+
+.date-info {
+    text-align: center;
+    font-size: 1rem;
+    color: #888;
+    margin: 10px 0;
+}
+
+/* ===== CONFIRMAÇÃO DE DELEÇÃO ===== */
+.delete-confirm {
+    text-align: center;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #fff5f5;
+    border-radius: 12px;
+    border: 2px solid #ffcccc;
+}
+
+.delete-confirm h2 {
+    color: #dc3545;
+}
+
+/* ===== PÁGINA DE ERRO ===== */
+.error-page {
+    text-align: center;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #fff8e6;
+    border-radius: 12px;
+    border: 2px solid #ffd700;
+}
+
+.error-page h2 {
+    color: #cc8800;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    color: #888;
+    font-size: 0.85rem;
+    border-top: 1px solid #eee;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 15px;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    button {
+        min-width: 120px;
+        padding: 10px 15px;
+        font-size: 0.85rem;
+    }
+    
+    fieldset {
+        padding: 15px;
+        margin: 15px 10px;
+    }
+    
+    li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="date"],
+    input[type="datetime-local"],
+    textarea {
+        padding: 10px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.4rem;
+    }
+    
+    button {
+        min-width: 100px;
+        font-size: 0.8rem;
+    }
+    
+    .action-buttons button {
+        width: 100%;
+    }
+}

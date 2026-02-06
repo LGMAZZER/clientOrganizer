@@ -1,68 +1,63 @@
 {{>partials/header}}
-    olá user
-    <hr/>
-    <p>Data de Hoje: {{day}} de {{currentMonth}}. {{weekDay}}
-    <h2>Eventos Próximos: (dias {{day}} - {{lastDay}})</h2>
- 
+
+
+<p class="date-info">Data de Hoje: {{day}} de {{currentMonth}} - {{weekDay}}</p>
+
+<div class="eventos-container">
+    <h2>Eventos Próximos (dias {{day}} - {{lastDay}})</h2>
     <ul>
-{{#clientes}}
-    <li>
+    {{#clientes}}
+        <li>
+            {{#dia_pagamento}}
+            <strong>{{nome_completo}} {{numero_processo}}</strong> - 
+            Pagamento Dia: {{dia_pagamento}} {{semana_pagamento}}
+            {{/dia_pagamento}}
 
-        {{#dia_pagamento}}
-        <strong>{{nome_completo}} {{numero_processo}}</strong> - 
-        Pagamento Dia: {{dia_pagamento}} {{semana_pagamento}}
-        {{/dia_pagamento}}
+            {{#dia_audiencia}}
+            <strong>{{nome_completo}} {{numero_processo}}</strong> -
+            Audiência Dia: {{dia_audiencia}} Horário: {{hora_audiencia}}:{{minuto_audiencia}} {{semana_audiencia}}
+            {{/dia_audiencia}}
 
-        {{#dia_audiencia}}
-        <strong>{{nome_completo}} {{numero_processo}}</strong> -
-        Audiencia Dia: {{dia_audiencia}} Horario: {{hora_audiencia}}:{{minuto_audiencia}} {{semana_audiencia}}
-        {{/dia_audiencia}}
+            {{#dia_protocolo}}
+            <strong>{{nome_completo}} {{numero_processo}}</strong> - Protocolo Dia: {{dia_protocolo}} {{semana_protocolo}}
+            {{/dia_protocolo}}
 
-        {{#dia_protocolo}}
-        <strong>{{nome_completo}} {{numero_processo}}</strong> - Protocolo Dia: {{dia_protocolo}} {{semana_protocolo}}
-        {{/dia_protocolo}}
+            {{#dia_contestacao}}
+            <strong>{{nome_completo}} {{numero_processo}}</strong> - Contestação Dia: {{dia_contestacao}} {{semana_contestacao}}
+            {{/dia_contestacao}}
 
-        {{#dia_contestacao}}
-        <strong>{{nome_completo}} {{numero_processo}}</strong> - Contestação Dia: {{dia_contestacao}} {{semana_contestacao}}
-        {{/dia_contestacao}}
+            {{#dia_alegacoes}}
+            <strong>{{nome_completo}} {{numero_processo}}</strong> - Alegações Dia: {{dia_alegacoes}} {{semana_alegacoes}}
+            {{/dia_alegacoes}}
 
-        {{#dia_alegacoes}}
-        <strong>{{nome_completo}} {{numero_processo}}</strong> - Alegações Dia: {{dia_alegacoes}} {{semana_alegacoes}}
-        {{/dia_alegacoes}}
+            {{#dia_recurso}}
+            <strong>{{nome_completo}} {{numero_processo}}</strong> - Recurso Dia: {{dia_recurso}} {{semana_recurso}}
+            {{/dia_recurso}}
 
-        {{#dia_recurso}}
-        <strong>{{nome_completo}} {{numero_processo}}</strong> - Recurso Dia: {{dia_recurso}} {{semana_recurso}}
-        {{/dia_recurso}}
+            {{#dia_sentenca}}
+            <strong>{{nome_completo}} {{numero_processo}}</strong> - Sentença Dia: {{dia_sentenca}} {{semana_sentenca}}
+            {{/dia_sentenca}}
 
-        {{#dia_sentenca}}
-        <strong>{{nome_completo}} {{numero_processo}}</strong> - Sentença Dia: {{dia_sentenca}} {{semana_sentenca}}
-        {{/dia_sentenca}}
+            {{#dia_transito}}
+            <strong>{{nome_completo}} {{numero_processo}}</strong> - Trânsito Dia: {{dia_transito}} {{semana_transito}}
+            {{/dia_transito}}
+        </li>
+    {{/clientes}}
+    </ul>
+</div>
 
-        {{#dia_transito}}
-        <strong>{{nome_completo}} {{numero_processo}}</strong> - Transito Dia: {{dia_transito}} {{semana_transito}}
-        {{/dia_transito}}
-
-            </li>
-        {{/clientes}}
-        </ul>
-    <hr/>
-
-
-    <form action = "/vizualizarclientes">
-        <button type ="submit">Vizualizar Clientes</button>
-    </form>
-    <hr/>
-
-
-    <form action = "/addcliente">
-        <button type ="submit">Adicionar Cliente</button>
+<div class="action-buttons">
+    <form action="/vizualizarclientes">
+        <button type="submit">Visualizar Clientes</button>
     </form>
 
-<a href="/calendario">
-    <button type="button">Calendario</button>
-</a>
+    <form action="/addcliente">
+        <button type="submit">Adicionar Cliente</button>
+    </form>
 
-
-
+    <a href="/calendario">
+        <button type="button">Calendário</button>
+    </a>
+</div>
 
 {{>partials/footer}}

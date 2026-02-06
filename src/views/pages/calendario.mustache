@@ -1,27 +1,33 @@
 {{>partials/header}}
+
 <h2>Calendário - {{month}} de {{year}}</h2>
 
-<div >
+<div class="nav-buttons">
     <form method="GET" action="/calendario">
         <input type="hidden" name="year" value={{year}}>
         <input type="hidden" name="numMonth" value={{numMonth}}>
         <input type="hidden" name="menos" value="true">
-        <button type="submit">Anterior</button>
+        <button type="submit">« Anterior</button>
     </form>
     
     <form method="GET" action="/calendario">
         <input type="hidden" name="year" value={{year}}>
         <input type="hidden" name="numMonth" value={{numMonth}}>
         <input type="hidden" name="mais" value="true">
-        <button type="submit">Próximo</button>
+        <button type="submit">Próximo »</button>
     </form>
 
     <form method="GET" action="/calendario">
-        <input type="number" name="month_dateNum"  onchange="this.form.submit()">
+        <input type="number" name="month_dateNum" placeholder="Mês (1-12)" onchange="this.form.submit()">
         <input type="hidden" name="year" value={{year}}>
         <input type="hidden" name="numMonth" value={{numMonth}}>
-        
         <button type="submit">Ir para mês</button>
+    </form>
+    <form method="GET" action="/calendario">
+        <input type="number" name="year_dateNum"  onchange="this.form.submit()">
+        <input type="hidden" name="year" value={{year}}>
+        <input type="hidden" name="numMonth" value={{numMonth}}>
+        <button type="submit">Ir para Ano</button>
     </form>
 </div>
 
@@ -98,11 +104,9 @@
 
 </div>
 
-
-
-<div >
-    <a href ="/">
-        <button type="button">Voltar</button>
+<div class="action-buttons">
+    <a href="/">
+        <button type="button" class="btn-secondary">Voltar</button>
     </a>
 </div>
 

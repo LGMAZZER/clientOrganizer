@@ -2,17 +2,17 @@
 
 <h2>Fazer Upload de Arquivo</h2>
 
-<form method="POST" action="/uploadnovoarquivo/{{id}}" enctype="multipart/form-data">
-<input type = "file" id="arquivo" name="arquivo" required>
-<button type="submit">Enviar</button>
+<fieldset>
+    <form method="POST" action="/uploadnovoarquivo/{{id}}" enctype="multipart/form-data">
+        <input type="file" id="arquivo" name="arquivo" required>
+        <button type="submit" class="btn-success">Enviar</button>
+    </form>
+</fieldset>
 
-<a href = "/cliente/{{id}}">
-<button type="submit">Cancelar</button>
-</a>
+<div class="action-buttons">
+    <a href="/cliente/{{id}}">
+        <button type="button" class="btn-secondary">Cancelar</button>
+    </a>
+</div>
 
-
-
-
-
- 
 {{>partials/footer}}
