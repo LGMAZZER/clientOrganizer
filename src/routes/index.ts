@@ -10,7 +10,7 @@ const router = Router();
 router.get("/loginerrado",loginController.loginErrado);
 router.get("/login",loginController.loginGet);
 router.post("/login",loginController.loginPost);
-router.get("/logout",loginController.logout);
+router.post("/logout",loginController.logout);
 
 
 router.use(loginController.requireAuth);
@@ -24,7 +24,7 @@ router.get("/vizualizarclientes",clienteController.vizualizarCliente);
 
 router.get("/cliente/:id",clienteController.paginaCliente);
 router.get("/editarcliente/:id",clienteController.editarclienteGet);
-router.post("/clienteeditado/:id",clienteController.editarClientePost);
+router.put("/clienteeditado/:id",clienteController.editarClientePost);
 
 router.get("/deletarcliente/:id",clienteController.deletarclienteGet);
 router.delete("/deletarcliente/:id",clienteController.deletarclientePost);
@@ -35,7 +35,7 @@ router.get("/clienteaddprocesso/:id",clienteController.addProcessoGet);
 router.post("/clientenovoprocesso/:id",clienteController.addProcessoPost);
 
 router.get("/editarprocesso/:id",clienteController.editarProcessoGet);
-router.post("/processoeditado/:id",clienteController.editarProcessoPost);
+router.put("/processoeditado/:id",clienteController.editarProcessoPost);
 
 router.get("/errocadastro",clienteController.showCpfResgisterError);
 

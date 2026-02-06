@@ -3,7 +3,7 @@
 <h2>Processo de: {{nome_completo}}</h2>
 
 <fieldset>
-<form method="POST" action ="/processoeditado/{{id}}">
+<form method="POST" action="/processoeditado/{{id}}?_method=PUT">
 
     <label for="honorarios">Honorários:</label>
     <input type="number" id="honorarios" name="honorarios" step="0.01" value="{{honorarios}}">

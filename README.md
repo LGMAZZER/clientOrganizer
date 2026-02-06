@@ -403,7 +403,7 @@ INSERT INTO users (email, senha, nome) VALUES (
 |--------|-------|-------------|
 | GET | `/login` | Login page |
 | POST | `/login` | Process login |
-| GET | `/logout` | Logout |
+| POST | `/logout` | Logout |
 | GET | `/loginerrado` | Login error page |
 
 ### Clients
@@ -415,7 +415,7 @@ INSERT INTO users (email, senha, nome) VALUES (
 | GET | `/vizualizarclientes` | List clients |
 | GET | `/cliente/:id` | Client details |
 | GET | `/editarcliente/:id` | Edit client form |
-| POST | `/clienteeditado/:id` | Update client |
+| PUT | `/clienteeditado/:id` | Update client |
 | GET | `/deletarcliente/:id` | Deletion confirmation |
 | DELETE | `/deletarcliente/:id` | Delete client |
 
@@ -425,7 +425,7 @@ INSERT INTO users (email, senha, nome) VALUES (
 | GET | `/clienteaddprocesso/:id` | New case form |
 | POST | `/clientenovoprocesso/:id` | Create case |
 | GET | `/editarprocesso/:id` | Edit case form |
-| POST | `/processoeditado/:id` | Update case |
+| PUT | `/processoeditado/:id` | Update case |
 
 ### Calendar
 | Method | Route | Description |
