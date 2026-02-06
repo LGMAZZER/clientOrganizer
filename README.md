@@ -1,112 +1,112 @@
-# Client Organizer - Sistema de Gerenciamento de Clientes Jurídicos
+# Client Organizer - Legal Client Management System
 
-Sistema web desenvolvido em Node.js/TypeScript para gerenciamento de clientes e processos jurídicos, com funcionalidades de calendário, upload de arquivos e autenticação de usuários.
+Web system developed in Node.js/TypeScript for managing clients and legal cases, featuring calendar, file upload, and user authentication functionalities.
 
-## Índice
+## Table of Contents
 
-- [Visão Geral](#visão-geral)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Arquitetura do Projeto](#arquitetura-do-projeto)
-- [Instalação](#instalação)
-- [Configuração](#configuração)
-- [Estrutura do Banco de Dados](#estrutura-do-banco-de-dados)
-- [Funcionalidades](#funcionalidades)
-- [Rotas da API](#rotas-da-api)
+- [Overview](#overview)
+- [Technologies Used](#technologies-used)
+- [Project Architecture](#project-architecture)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Database Structure](#database-structure)
+- [Features](#features)
+- [API Routes](#api-routes)
 - [Screenshots](#screenshots)
 
 ---
 
-## Visão Geral
+## Overview
 
-O **Client Organizer** é uma aplicação web projetada para escritórios de advocacia e profissionais jurídicos, permitindo:
+**Client Organizer** is a web application designed for law firms and legal professionals, enabling:
 
-- Cadastro e gerenciamento completo de clientes
-- Controle de processos jurídicos vinculados aos clientes
-- Gerenciamento de datas importantes (audiências, prazos, pagamentos)
-- Upload e organização de documentos por processo
-- Calendário interativo com visualização de compromissos
-- Dashboard com eventos próximos da semana
-- Sistema de autenticação seguro
+- Complete client registration and management
+- Control of legal cases linked to clients
+- Management of important dates (hearings, deadlines, payments)
+- Upload and organization of documents per case
+- Interactive calendar with appointment visualization
+- Dashboard with upcoming weekly events
+- Secure authentication system
 
 ---
 
-## Tecnologias Utilizadas
+## Technologies Used
 
 ### Backend
-| Tecnologia | Versão | Descrição |
-|------------|--------|-----------|
-| **Node.js** | - | Runtime JavaScript |
-| **Express** | 5.1.0 | Framework web |
-| **TypeScript** | - | Superset tipado do JavaScript |
-| **Sequelize** | 6.37.7 | ORM para banco de dados |
-| **MySQL2** | 3.16.0 | Driver do banco de dados |
+| Technology | Version | Description |
+|------------|---------|-------------|
+| **Node.js** | - | JavaScript Runtime |
+| **Express** | 5.1.0 | Web Framework |
+| **TypeScript** | - | Typed JavaScript Superset |
+| **Sequelize** | 6.37.7 | Database ORM |
+| **MySQL2** | 3.16.0 | Database Driver |
 
-### Autenticação e Segurança
-| Tecnologia | Versão | Descrição |
-|------------|--------|-----------|
-| **bcrypt** | 6.0.0 | Hash de senhas |
-| **express-session** | 1.19.0 | Gerenciamento de sessões |
+### Authentication and Security
+| Technology | Version | Description |
+|------------|---------|-------------|
+| **bcrypt** | 6.0.0 | Password Hashing |
+| **express-session** | 1.19.0 | Session Management |
 
-### Templates e Upload
-| Tecnologia | Versão | Descrição |
-|------------|--------|-----------|
-| **Mustache-Express** | 1.3.2 | Template engine |
-| **Multer** | 2.0.2 | Upload de arquivos |
-| **UUID** | 13.0.0 | Geração de nomes únicos para arquivos |
+### Templates and Upload
+| Technology | Version | Description |
+|------------|---------|-------------|
+| **Mustache-Express** | 1.3.2 | Template Engine |
+| **Multer** | 2.0.2 | File Upload |
+| **UUID** | 13.0.0 | Unique Filename Generation |
 
-### Utilitários
-| Tecnologia | Versão | Descrição |
-|------------|--------|-----------|
-| **dotenv** | 17.2.3 | Variáveis de ambiente |
-| **method-override** | 3.0.0 | Suporte a métodos HTTP (PUT/DELETE) |
-| **validator** | 13.15.20 | Validação de dados |
+### Utilities
+| Technology | Version | Description |
+|------------|---------|-------------|
+| **dotenv** | 17.2.3 | Environment Variables |
+| **method-override** | 3.0.0 | HTTP Methods Support (PUT/DELETE) |
+| **validator** | 13.15.20 | Data Validation |
 
 ---
 
-## Arquitetura do Projeto
+## Project Architecture
 
 ```
 node copy/
-├── package.json            # Dependências e scripts
-├── tsconfig.json           # Configuração TypeScript
-├── README.md               # Documentação
+├── package.json            # Dependencies and scripts
+├── tsconfig.json           # TypeScript configuration
+├── README.md               # Documentation
 │
-├── public/                 # Arquivos estáticos
+├── public/                 # Static files
 │   ├── css/
-│   │   └── style.css       # Estilos da aplicação
-│   ├── images/             # Imagens estáticas
-│   └── uploads/            # Arquivos uploadados (por processo)
-│       └── processo_{id}/  # Pasta de cada processo
+│   │   └── style.css       # Application styles
+│   ├── images/             # Static images
+│   └── uploads/            # Uploaded files (per case)
+│       └── processo_{id}/  # Folder for each case
 │
-└── src/                    # Código fonte
-    ├── server.ts           # Ponto de entrada da aplicação
+└── src/                    # Source code
+    ├── server.ts           # Application entry point
     │
     ├── config/
-    │   └── multer.ts       # Configuração do upload de arquivos
+    │   └── multer.ts       # File upload configuration
     │
-    ├── controllers/        # Lógica de negócio
-    │   ├── arquivoController.ts    # Gerenciamento de arquivos
-    │   ├── calendarioController.ts # Calendário de eventos
-    │   ├── clienteController.ts    # CRUD de clientes/processos
-    │   ├── homeController.ts       # Dashboard principal
-    │   └── loginContoller.ts       # Autenticação
+    ├── controllers/        # Business logic
+    │   ├── arquivoController.ts    # File management
+    │   ├── calendarioController.ts # Event calendar
+    │   ├── clienteController.ts    # Client/case CRUD
+    │   ├── homeController.ts       # Main dashboard
+    │   └── loginContoller.ts       # Authentication
     │
     ├── instances/
-    │   └── mysql.ts        # Conexão com banco de dados
+    │   └── mysql.ts        # Database connection
     │
-    ├── models/             # Modelos do Sequelize
-    │   ├── Arquivo.ts      # Modelo de arquivos
-    │   ├── Cliente.ts      # Modelo de clientes/processos
-    │   └── Users.ts        # Modelo de usuários
+    ├── models/             # Sequelize models
+    │   ├── Arquivo.ts      # File model
+    │   ├── Cliente.ts      # Client/case model
+    │   └── Users.ts        # User model
     │
     ├── routes/
-    │   └── index.ts        # Definição de rotas
+    │   └── index.ts        # Route definitions
     │
     ├── utils/
-    │   └── hashSenha.ts    # Utilitário para gerar hash de senha
+    │   └── hashSenha.ts    # Password hash utility
     │
-    └── views/              # Templates Mustache
-        ├── pages/          # Páginas da aplicação
+    └── views/              # Mustache templates
+        ├── pages/          # Application pages
         │   ├── arquivoDelete.mustache
         │   ├── arquivosPage.mustache
         │   ├── arquivoUpload.mustache
@@ -123,156 +123,156 @@ node copy/
         │   ├── loginErrado.mustache
         │   └── processoEdit.mustache
         │
-        └── partials/       # Componentes reutilizáveis
+        └── partials/       # Reusable components
             ├── footer.mustache
             └── header.mustache
 ```
 
 ---
 
-## Instalação
+## Installation
 
-### Pré-requisitos
-- Node.js (versão 18 ou superior recomendada)
+### Prerequisites
+- Node.js (version 18 or higher recommended)
 - MySQL 8.0+
-- npm ou yarn
+- npm or yarn
 
-### Passos
+### Steps
 
-1. **Clone o repositório**
+1. **Clone the repository**
 ```bash
-git clone <url-do-repositorio>
+git clone <repository-url>
 cd node\ copy
 ```
 
-2. **Instale as dependências**
+2. **Install dependencies**
 ```bash
 npm install
 ```
 
-3. **Configure as variáveis de ambiente**
+3. **Configure environment variables**
 ```bash
 cp .env.example .env
-# Edite o arquivo .env com suas configurações
+# Edit the .env file with your settings
 ```
 
-4. **Crie o banco de dados**
+4. **Create the database**
 ```sql
 CREATE DATABASE client_organizer;
 ```
 
-5. **Inicie a aplicação**
+5. **Start the application**
 ```bash
-# Modo desenvolvimento (com hot reload)
+# Development mode (with hot reload)
 npm run start-dev
 
-# Modo produção
-npm run watch-ts  # Em um terminal
-npm start         # Em outro terminal
+# Production mode
+npm run watch-ts  # In one terminal
+npm start         # In another terminal
 ```
 
 ---
 
-## Configuração
+## Configuration
 
-### Variáveis de Ambiente (.env)
+### Environment Variables (.env)
 
-Crie um arquivo `.env` na raiz do projeto:
+Create a `.env` file in the project root:
 
 ```env
-# Servidor
+# Server
 PORT=3000
 
-# Banco de Dados MySQL
+# MySQL Database
 MYSQL_DB=client_organizer
-MYSQL_USER=seu_usuario
-MYSQL_PASSWORD=sua_senha
+MYSQL_USER=your_username
+MYSQL_PASSWORD=your_password
 MYSQL_PORT=3306
 
-# Sessão
-SESSION_SECRET=sua_chave_secreta_muito_segura_aqui
+# Session
+SESSION_SECRET=your_very_secure_secret_key_here
 ```
 
-### Configuração do Banco de Dados
+### Database Configuration
 
-O sistema utiliza Sequelize ORM. As tabelas são criadas automaticamente baseadas nos models.
+The system uses Sequelize ORM. Tables are automatically created based on the models.
 
 ---
 
-## Estrutura do Banco de Dados
+## Database Structure
 
-### Tabela: `clientes_processos`
+### Table: `clientes_processos`
 
-Armazena informações de clientes e seus processos jurídicos.
+Stores client information and their legal cases.
 
-| Campo | Tipo | Descrição |
-|-------|------|-----------|
-| `id` | INT (PK) | Identificador único |
-| `id2` | INT | Referência ao cliente principal |
-| `nome_completo` | VARCHAR | Nome completo do cliente |
-| `cpf` | VARCHAR | CPF (único) |
-| `rg` | VARCHAR | RG |
-| `data_nascimento` | DATE | Data de nascimento |
-| `estado_civil` | VARCHAR | Estado civil |
-| `naturalidade` | VARCHAR | Naturalidade |
-| `telefone_contato` | VARCHAR | Telefone |
-| `email` | VARCHAR | E-mail |
-| `endereco_residencial` | TEXT | Endereço residencial |
-| `profissao` | VARCHAR | Profissão |
-| `nome_conjuge` | VARCHAR | Nome do cônjuge |
-| `profissao_conjuge` | VARCHAR | Profissão do cônjuge |
-| `numero_filhos` | INT | Número de filhos |
-| `idade_filhos` | VARCHAR | Idades dos filhos |
-| `empresa_trabalho` | VARCHAR | Empresa onde trabalha |
-| `endereco_comercial` | TEXT | Endereço comercial |
-| `telefone_comercial` | VARCHAR | Telefone comercial |
-| `numero_processo` | VARCHAR | Número do processo (único) |
-| `acao` | VARCHAR | Tipo de ação judicial |
-| `vara` | VARCHAR | Vara do processo |
-| `data_protocolo` | DATE | Data de protocolo |
-| `data_audiencia` | DATETIME | Data/hora da audiência |
-| `data_contestacao` | DATETIME | Data de contestação |
-| `data_alegacoes` | DATETIME | Data das alegações finais |
-| `data_recurso` | DATETIME | Data do recurso |
-| `data_sentenca` | DATETIME | Data da sentença |
-| `data_transito_julgado` | DATE | Data do trânsito em julgado |
-| `honorarios` | DECIMAL(15,2) | Valor dos honorários |
-| `data_pagamento` | DATE | Data de pagamento |
-| `plano_pagamento` | TEXT | Descrição do plano pagamento |
-| `observacoes` | TEXT | Observações gerais |
-| `criado_em` | DATETIME | Data de criação |
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | INT (PK) | Unique identifier |
+| `id2` | INT | Reference to main client |
+| `nome_completo` | VARCHAR | Client's full name |
+| `cpf` | VARCHAR | CPF (unique) |
+| `rg` | VARCHAR | RG (ID number) |
+| `data_nascimento` | DATE | Date of birth |
+| `estado_civil` | VARCHAR | Marital status |
+| `naturalidade` | VARCHAR | Place of birth |
+| `telefone_contato` | VARCHAR | Phone number |
+| `email` | VARCHAR | Email |
+| `endereco_residencial` | TEXT | Residential address |
+| `profissao` | VARCHAR | Profession |
+| `nome_conjuge` | VARCHAR | Spouse's name |
+| `profissao_conjuge` | VARCHAR | Spouse's profession |
+| `numero_filhos` | INT | Number of children |
+| `idade_filhos` | VARCHAR | Children's ages |
+| `empresa_trabalho` | VARCHAR | Employer |
+| `endereco_comercial` | TEXT | Business address |
+| `telefone_comercial` | VARCHAR | Business phone |
+| `numero_processo` | VARCHAR | Case number (unique) |
+| `acao` | VARCHAR | Type of legal action |
+| `vara` | VARCHAR | Court division |
+| `data_protocolo` | DATE | Filing date |
+| `data_audiencia` | DATETIME | Hearing date/time |
+| `data_contestacao` | DATETIME | Response date |
+| `data_alegacoes` | DATETIME | Final arguments date |
+| `data_recurso` | DATETIME | Appeal date |
+| `data_sentenca` | DATETIME | Sentence date |
+| `data_transito_julgado` | DATE | Final judgment date |
+| `honorarios` | DECIMAL(15,2) | Legal fees |
+| `data_pagamento` | DATE | Payment date |
+| `plano_pagamento` | TEXT | Payment plan description |
+| `observacoes` | TEXT | General notes |
+| `criado_em` | DATETIME | Creation date |
 
-### Tabela: `arquivos_processos`
+### Table: `arquivos_processos`
 
-Armazena os arquivos anexados aos processos.
+Stores files attached to cases.
 
-| Campo | Tipo | Descrição |
-|-------|------|-----------|
-| `id` | INT (PK) | Identificador único |
-| `processo_id` | INT | ID do processo relacionado |
-| `nome_original` | VARCHAR | Nome original do arquivo |
-| `nome_salvo` | VARCHAR | Nome único (UUID) no servidor |
-| `tipo` | VARCHAR | Tipo MIME do arquivo |
-| `tamanho` | INT | Tamanho em bytes |
-| `caminho` | VARCHAR | Caminho no servidor |
-| `criado_em` | DATETIME | Data de upload |
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | INT (PK) | Unique identifier |
+| `processo_id` | INT | Related case ID |
+| `nome_original` | VARCHAR | Original filename |
+| `nome_salvo` | VARCHAR | Unique name (UUID) on server |
+| `tipo` | VARCHAR | MIME type |
+| `tamanho` | INT | Size in bytes |
+| `caminho` | VARCHAR | Server path |
+| `criado_em` | DATETIME | Upload date |
 
-### Tabela: `users`
+### Table: `users`
 
-Armazena os usuários do sistema.
+Stores system users.
 
-| Campo | Tipo | Descrição |
-|-------|------|-----------|
-| `id` | INT (PK) | Identificador único |
-| `email` | VARCHAR | E-mail (único) |
-| `senha` | VARCHAR | Senha (hash bcrypt) |
-| `nome` | VARCHAR | Nome do usuário |
-| `criado_em` | DATETIME | Data de criação |
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | INT (PK) | Unique identifier |
+| `email` | VARCHAR | Email (unique) |
+| `senha` | VARCHAR | Password (bcrypt hash) |
+| `nome` | VARCHAR | User name |
+| `criado_em` | DATETIME | Creation date |
 
-### Script SQL para Criar Tabelas
+### SQL Script to Create Tables
 
 ```sql
--- Tabela de usuários
+-- Users table
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
@@ -281,7 +281,7 @@ CREATE TABLE users (
     criado_em DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- Tabela de clientes e processos
+-- Clients and cases table
 CREATE TABLE clientes_processos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id2 INT,
@@ -319,7 +319,7 @@ CREATE TABLE clientes_processos (
     criado_em DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- Tabela de arquivos
+-- Files table
 CREATE TABLE arquivos_processos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     processo_id INT NOT NULL,
@@ -332,213 +332,195 @@ CREATE TABLE arquivos_processos (
     FOREIGN KEY (processo_id) REFERENCES clientes_processos(id) ON DELETE CASCADE
 );
 
--- Criar usuário inicial (senha: admin123)
--- Use o utilitário src/utils/hashSenha.ts para gerar novos hashes
+-- Create initial user (password: admin123)
+-- Use the utility src/utils/hashSenha.ts to generate new hashes
 INSERT INTO users (email, senha, nome) VALUES (
     'admin@email.com',
-    '$2b$10$...(hash_gerado)',
-    'Administrador'
+    '$2b$10$...(generated_hash)',
+    'Administrator'
 );
 ```
 
 ---
 
-## Funcionalidades
+## Features
 
-### Autenticação
-- Login com e-mail e senha
-- Sessões com duração de 24 horas
-- Middleware de proteção de rotas
-- Logout seguro com destruição de sessão
+### Authentication
+- Login with email and password
+- Sessions lasting 24 hours
+- Route protection middleware
+- Secure logout with session destruction
 
-### Gerenciamento de Clientes
-- **Cadastro completo**: dados pessoais, contato, profissionais e familiares
-- **Edição**: atualização de informações do cliente
-- **Exclusão**: remove cliente e todos os arquivos associados
-- **Busca**: pesquisa por nome ou número de processo
-- **Paginação**: navegação com 10 itens por página
-- **Validação de CPF**: evita duplicidade de cadastro
+### Client Management
+- **Complete registration**: personal, contact, professional, and family data
+- **Editing**: update client information
+- **Deletion**: removes client and all associated files
+- **Search**: search by name or case number
+- **Pagination**: navigation with 10 items per page
+- **CPF validation**: prevents duplicate registrations
 
-### Gerenciamento de Processos
-- Um cliente pode ter múltiplos processos
-- Cada processo contém:
-  - Número do processo
-  - Ação judicial
-  - Vara
-  - Datas importantes (protocolo, audiência, contestação, etc.)
-  - Honorários e plano de pagamento
-  - Observações
+### Case Management
+- A client can have multiple cases
+- Each case contains:
+  - Case number
+  - Legal action type
+  - Court division
+  - Important dates (filing, hearing, response, etc.)
+  - Legal fees and payment plan
+  - Notes
 
-### Calendário
-- Visualização mensal de eventos
-- Navegação entre meses e anos
-- Filtro por mês e ano específicos
-- Exibe automaticamente:
-  - Audiências (com horário)
-  - Prazos de protocolo
-  - Datas de pagamento
-  - Contestações, alegações, recursos e sentenças
-  - Trânsito em julgado
+### Calendar
+- Monthly event view
+- Navigation between months and years
+- Filter by specific month and year
+- Automatically displays:
+  - Hearings (with time)
+  - Filing deadlines
+  - Payment dates
+  - Responses, arguments, appeals, and sentences
+  - Final judgments
 
 ### Dashboard (Home)
-- Exibe eventos dos próximos 7-14 dias
-- Informação do dia atual
-- Acesso rápido às principais funcionalidades
-- Lista ordenada por proximidade da data
+- Shows events for the next 7-14 days
+- Current day information
+- Quick access to main features
+- List sorted by date proximity
 
-### Gerenciamento de Arquivos
+### File Management
 - **Upload**: PDF, DOC, DOCX, JPG, PNG
-- **Limite**: 500MB por arquivo
-- **Organização**: arquivos separados por pasta do processo
-- **Nomes únicos**: uso de UUID para evitar conflitos
-- **Download**: acesso direto aos arquivos
-- **Exclusão**: remove arquivo do disco e do banco
+- **Limit**: 500MB per file
+- **Organization**: files separated by case folder
+- **Unique names**: UUID usage to avoid conflicts
+- **Download**: direct file access
+- **Deletion**: removes file from disk and database
 
 ---
 
-## Rotas da API
+## API Routes
 
-### Autenticação
-| Método | Rota | Descrição |
-|--------|------|-----------|
-| GET | `/login` | Página de login |
-| POST | `/login` | Processar login |
-| GET | `/logout` | Fazer logout |
-| GET | `/loginerrado` | Página de erro de login |
+### Authentication
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/login` | Login page |
+| POST | `/login` | Process login |
+| GET | `/logout` | Logout |
+| GET | `/loginerrado` | Login error page |
 
-### Clientes
-| Método | Rota | Descrição |
-|--------|------|-----------|
+### Clients
+| Method | Route | Description |
+|--------|-------|-------------|
 | GET | `/` | Dashboard (home) |
-| GET | `/addcliente` | Formulário novo cliente |
-| POST | `/novocliente` | Criar cliente |
-| GET | `/vizualizarclientes` | Listar clientes |
-| GET | `/cliente/:id` | Detalhes do cliente |
-| GET | `/editarcliente/:id` | Formulário editar cliente |
-| POST | `/clienteeditado/:id` | Atualizar cliente |
-| GET | `/deletarcliente/:id` | Confirmação exclusão |
-| DELETE | `/deletarcliente/:id` | Excluir cliente |
+| GET | `/addcliente` | New client form |
+| POST | `/novocliente` | Create client |
+| GET | `/vizualizarclientes` | List clients |
+| GET | `/cliente/:id` | Client details |
+| GET | `/editarcliente/:id` | Edit client form |
+| POST | `/clienteeditado/:id` | Update client |
+| GET | `/deletarcliente/:id` | Deletion confirmation |
+| DELETE | `/deletarcliente/:id` | Delete client |
 
-### Processos
-| Método | Rota | Descrição |
-|--------|------|-----------|
-| GET | `/clienteaddprocesso/:id` | Formulário novo processo |
-| POST | `/clientenovoprocesso/:id` | Criar processo |
-| GET | `/editarprocesso/:id` | Formulário editar processo |
-| POST | `/processoeditado/:id` | Atualizar processo |
+### Cases
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/clienteaddprocesso/:id` | New case form |
+| POST | `/clientenovoprocesso/:id` | Create case |
+| GET | `/editarprocesso/:id` | Edit case form |
+| POST | `/processoeditado/:id` | Update case |
 
-### Calendário
-| Método | Rota | Descrição |
-|--------|------|-----------|
-| GET | `/calendario` | Página do calendário |
+### Calendar
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/calendario` | Calendar page |
 
-**Query Parameters do Calendário:**
-- `numMonth`: número do mês (0-11)
-- `year`: ano
-- `mais`: próximo mês
-- `menos`: mês anterior
-- `month_dateNum`: ir para mês específico (1-12)
-- `year_dateNum`: ir para ano específico
+**Calendar Query Parameters:**
+- `numMonth`: month number (0-11)
+- `year`: year
+- `mais`: next month
+- `menos`: previous month
+- `month_dateNum`: go to specific month (1-12)
+- `year_dateNum`: go to specific year
 
-### Arquivos
-| Método | Rota | Descrição |
-|--------|------|-----------|
-| GET | `/arquivosprocessos/:id` | Listar arquivos do processo |
-| GET | `/uploadarquivo/:id` | Formulário upload |
-| POST | `/uploadnovoarquivo/:id` | Upload de arquivo |
-| GET | `/arquivodelete/:id` | Confirmação exclusão |
-| DELETE | `/arquivodelete/:id` | Excluir arquivo |
+### Files
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/arquivosprocessos/:id` | List case files |
+| GET | `/uploadarquivo/:id` | Upload form |
+| POST | `/uploadnovoarquivo/:id` | Upload file |
+| GET | `/arquivodelete/:id` | Deletion confirmation |
+| DELETE | `/arquivodelete/:id` | Delete file |
 
 ---
 
-## Scripts NPM
+## NPM Scripts
 
 ```bash
-# Iniciar em modo desenvolvimento (com nodemon)
+# Start in development mode (with nodemon)
 npm run start-dev
 
-# Compilar TypeScript em modo watch
+# Compile TypeScript in watch mode
 npm run watch-ts
 
-# Iniciar versão compilada (produção)
+# Start compiled version (production)
 npm start
 
-# Executar testes (não configurado)
+# Run tests (not configured)
 npm test
 ```
 
 ---
 
-## Criando Usuário Inicial
+## Creating Initial User
 
-Para criar o primeiro usuário do sistema:
+To create the first system user:
 
-1. Edite o arquivo `src/utils/hashSenha.ts`:
+1. Edit the file `src/utils/hashSenha.ts`:
 ```typescript
-const senha = "sua_senha_aqui";
+const senha = "your_password_here";
 ```
 
-2. Execute o utilitário:
+2. Run the utility:
 ```bash
 npx ts-node src/utils/hashSenha.ts
 ```
 
-3. Copie o SQL gerado e execute no MySQL:
+3. Copy the generated SQL and execute in MySQL:
 ```sql
-INSERT INTO users (email, senha, nome) VALUES ('email@exemplo.com', '$2b$10$...hash...', 'Nome');
+INSERT INTO users (email, senha, nome) VALUES ('email@example.com', '$2b$10$...hash...', 'Name');
 ```
 
 ---
 
-## Estilização
+## Styling
 
-O sistema utiliza CSS puro com:
-- Design moderno com gradientes em tons de verde
-- Layout responsivo
-- Fonte Inter do Google Fonts
-- Componentes consistentes (botões, formulários, tabelas)
-- Feedback visual em interações (hover, focus)
-
----
-
-## Segurança
-
-- Senhas armazenadas com hash bcrypt (salt rounds: 10)
-- Sessões com chave secreta configurável
-- Middleware de autenticação em rotas protegidas
-- Validação de tipos de arquivo no upload
-- Sanitização de inputs com conversão de valores vazios para null
+The system uses pure CSS with:
+- Modern design with green gradient tones
+- Responsive layout
+- Inter font from Google Fonts
+- Consistent components (buttons, forms, tables)
+- Visual feedback on interactions (hover, focus)
 
 ---
 
-## Observações Importantes
+## Security
 
-1. **Timezone**: O sistema converte horários de audiência do UTC para GMT-3 (Brasil)
-2. **Relacionamento Cliente/Processo**: O campo `id2` vincula processos ao cliente principal
-3. **Arquivos**: São organizados em pastas por processo (`processo_{id}`)
-4. **CPF**: Armazenado sem formatação (apenas dígitos), formatado na exibição
-
----
-
-## Possíveis Melhorias Futuras
-
-- [ ] Implementar testes automatizados
-- [ ] Adicionar validação de CPF
-- [ ] Implementar recuperação de senha
-- [ ] Adicionar níveis de permissão de usuário
-- [ ] Criar API REST com autenticação JWT
-- [ ] Implementar backup automático de arquivos
-- [ ] Adicionar notificações por e-mail de eventos
-- [ ] Criar relatórios exportáveis (PDF)
+- Passwords stored with bcrypt hash (salt rounds: 10)
+- Configurable secret key sessions
+- Authentication middleware on protected routes
+- File type validation on upload
+- Input sanitization with empty values converted to null
 
 ---
 
-## Licença
+## Important Notes
 
-Este projeto está sob a licença ISC.
+1. **Timezone**: The system converts hearing times from UTC to GMT-3 (Brazil)
+2. **Client/Case Relationship**: The `id2` field links cases to the main client
+3. **Files**: Organized in folders per case (`processo_{id}`)
+4. **CPF**: Stored without formatting (digits only), formatted on display
+
 
 ---
 
-## Autor
+## Author
 
-Desenvolvido para gerenciamento de clientes jurídicos.
+Luis Gustavo Paes de Almeida
