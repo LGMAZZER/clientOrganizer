@@ -463,8 +463,7 @@ npm run watch-ts
 # Start compiled version (production)
 npm start
 
-# Run tests (not configured)
-npm test
+
 ```
 
 ---
