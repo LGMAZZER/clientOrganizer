@@ -411,7 +411,7 @@ export const clienteAddPost = async (req: Request, res: Response) => {
                 cpf:dados.cpf
             }
         });
-        console.log(userOP);
+        
         
         if(userOP.length===0){
         const user = await Cliente.create(dados);

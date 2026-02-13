@@ -5,6 +5,8 @@ import * as calendarioController from "../controllers/calendarioController";
 import * as arquivoController from "../controllers/arquivoController";
 import * as multer from "../config/multer";
 import * as loginController from "../controllers/loginContoller";
+import * as meetingsController from "../controllers/meetingsController";
+
 const router = Router();
 
 router.get("/loginerrado",loginController.loginErrado);
@@ -46,6 +48,11 @@ router.post("/uploadnovoarquivo/:id",multer.upload.single("arquivo"),arquivoCont
 
 router.get("/arquivodelete/:id",arquivoController.arquivoDeleteGet);
 router.delete("/arquivodelete/:id",arquivoController.arquivoDeletePost);
+
+router.get("/novareuniao",meetingsController.cadastrarReuniaoGet);
+router.post("/novareuniao",meetingsController.cadastrarReuniaoPost);
+router.get("/deletarreuniao/:id",meetingsController.deletarReuniaoGet);
+router.delete("/deletarreuniao/:id",meetingsController.deletarReuniao);
 
  
 

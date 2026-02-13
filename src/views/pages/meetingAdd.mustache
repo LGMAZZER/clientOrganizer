@@ -1,0 +1,23 @@
+{{>partials/header}}
+
+<h2>Adicionar Cliente</h2>
+
+<fieldset>
+    <form method="POST" action="/novareuniao">
+    <label for="nome_completo">Reunião:</label>
+    <input type="text" id="reuniao" name="reuniao" required>
+
+    <label for="data_nascimento">Data da Reunião:</label>
+    <input type="datetime-local" id="data_reuniao" name="data_reuniao">
+
+            <button type="submit" class="btn-success">Enviar Cadastro</button>
+    </form>
+</fieldset>
+
+<div class="action-buttons">
+    <form action="/">
+        <button type="submit" class="btn-secondary">Cancelar</button>
+    </form>
+</div>
+
+{{>partials/footer}}

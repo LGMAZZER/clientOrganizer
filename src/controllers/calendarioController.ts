@@ -1,6 +1,7 @@
 import { Response, Request } from "express";
 import { Op,fn,col,where,literal } from "sequelize";
 import { Cliente } from "../models/Cliente";
+import { Meetings } from "../models/Meetings";
 
 export const calendario = async(req:Request,res:Response)=>{
 
@@ -51,6 +52,30 @@ export const calendario = async(req:Request,res:Response)=>{
     if(req.query.year_dateNum){
         year = parseInt(req.query.year_dateNum as string);
     }
+
+    const meetings = await Meetings.findAll({
+        
+        where:{
+            
+            date_meeting:{[Op.ne]:null},
+            [Op.and]:[
+                where(fn("MONTH",col("date_meeting")),numMonth + 1),
+                where(fn("YEAR",col("date_meeting")),year),
+            ]
+        },
+         attributes: {
+            include: [
+                [fn('DAY', col('date_meeting')), 'dia_meeting'],
+                [literal("HOUR(CONVERT_TZ(date_meeting, '+00:00', '-03:00'))"), 'hora_meeting'],
+                [literal("LPAD(MINUTE(CONVERT_TZ(date_meeting, '+00:00', '-03:00')), 2, '0')"), 'minuto_meeting']
+            ]
+        },
+
+        
+        order:[
+            ["date_meeting","ASC"]
+        ]
+    });
 
     
 
@@ -116,11 +141,15 @@ export const calendario = async(req:Request,res:Response)=>{
 
     
     const clientesComDia = [
+    
     ...clientesResults.map(cliente => cliente.toJSON()),
     ...clientesAudiencia.map(cliente => cliente.toJSON()),
+    ...meetings.map(reuniao=>reuniao.toJSON())
 
 
     ];
+
+    
     
     
  

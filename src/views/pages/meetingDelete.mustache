@@ -1,0 +1,19 @@
+{{>partials/header}}
+
+<div class="delete-confirm">
+    <h2>Deseja Deletar a Reunião?</h2>
+    
+    <p><strong>{{name_meeting}}</strong></p>
+    
+    <fieldset>
+        <form method="POST" action="/deletarreuniao/{{id}}?_method=DELETE">
+            <button type="submit" class="btn-danger">Deletar</button> 
+        </form>
+    </fieldset>
+
+    <form action="/calendario">
+        <button type="submit" class="btn-secondary">Cancelar</button>
+    </form>
+</div>
+
+{{>partials/footer}}

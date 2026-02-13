@@ -98,9 +98,21 @@
                 {{#dia_transito}}
                 <li><strong>{{nome_completo}} ({{numero_processo}})</strong> - Trânsito em Julgado: {{dia_transito}}</li>
                 {{/dia_transito}}
+
+                <section>
+            <h3>Reuniões</h3>
+            {{#dia_meeting}}
+            <strong>{{name_meeting}} Reunião Dia:{{dia_meeting}} Horário {{hora_meeting}} {{minuto_meeting}} {{semana_meeting}} 
+            <a href ="/deletarreuniao/{{id}}">
+            <button type="button">Deletar</button>
+            </a>
+
+    {{/dia_meeting}}
+    </section>
             {{/clientes}}
         </ul>
     </section>
+    
 
 </div>
 

@@ -2,6 +2,7 @@ import { Response,Request } from "express";
 import{ Op, where,fn,col,literal } from "sequelize";
 
 import { Cliente } from "../models/Cliente";
+import { Meetings } from "../models/Meetings";
 import { DATE } from "sequelize";
 
 export const home = async(req: Request, res: Response)=>{
@@ -111,6 +112,29 @@ export const home = async(req: Request, res: Response)=>{
     
             clientesResults.push(...resultados);
         }
+
+        const reuniao = await Meetings.findAll({
+            
+            where:{
+                
+                date_meeting:{[Op.ne]:null,[Op.between]:[today,dayInterval[1]]},
+                      
+            
+            },
+             attributes: {
+                include: [
+                    [fn('DAY', col('date_meeting')), 'dia_meeting'],
+                    [literal("HOUR(CONVERT_TZ(date_meeting, '+00:00', '-03:00'))"), 'hora_meeting'],
+                    [literal("LPAD(MINUTE(CONVERT_TZ(date_meeting, '+00:00', '-03:00')), 2, '0')"), 'minuto_meeting'],
+                    [literal("CASE DAYOFWEEK(date_meeting) WHEN 1 THEN 'Domingo' WHEN 2 THEN 'Segunda' WHEN 3 THEN 'Terça' WHEN 4 THEN 'Quarta' WHEN 5 THEN 'Quinta' WHEN 6 THEN 'Sexta' WHEN 7 THEN 'Sábado' END"), 'semana_meeting'],
+                ]
+            },
+    
+            
+            order:[
+                ["date_meeting","ASC"]
+            ]
+        });
         
 
         
@@ -122,6 +146,7 @@ export const home = async(req: Request, res: Response)=>{
         const clientesComDia = [
         ...clientesResults.map(cliente => cliente.toJSON()),
         ...clientesAudiencia.map(cliente => cliente.toJSON()),
+        ...reuniao.map(cliente => cliente.toJSON())
         ];
 
         // Ordenar todas as datas em ordem crescente
@@ -137,6 +162,7 @@ export const home = async(req: Request, res: Response)=>{
                     cliente.data_recurso,
                     cliente.data_sentenca,
                     cliente.data_transito_julgado,
+                    cliente.date_meeting,
                 ];
                 for (const data of datasDisponiveis) {
                     if (data) return new Date(data);
