@@ -1,6 +1,9 @@
 # Dependencies
 node_modules/
 
+# Uploads
+public/uploads/
+
 # Build output
 dist/
 build/

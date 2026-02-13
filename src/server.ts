@@ -32,7 +32,17 @@ server.set("view engine", "mustache");
 server.set("views",path.join(__dirname,"views"));
 server.engine("mustache", mustache());
 
-server.use(express.static(path.join(__dirname, "../public")));
+// Arquivos públicos sem autenticação (CSS, imagens do site)
+server.use('/css', express.static(path.join(__dirname, "../public/css")));
+server.use('/images', express.static(path.join(__dirname, "../public/images")));
+
+// Uploads protegidos - requer login
+server.use('/uploads', (req: Request, res: Response, next) => {
+    if (!req.session.userId) {
+        return res.status(401).send('Acesso não autorizado');
+    }
+    next();
+}, express.static(path.join(__dirname, "../public/uploads")));
 
 server.use(express.urlencoded({extended: true}));
 
