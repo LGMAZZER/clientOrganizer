@@ -16,7 +16,7 @@ export const calendario = async(req:Request,res:Response)=>{
         "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
     ];
 
-    let numMonth:number = parseInt(req.query.numMonth as string) || month_dateNum;
+    let numMonth:number = req.query.numMonth !== undefined ? parseInt(req.query.numMonth as string) : month_dateNum;
     let month:string = months[numMonth] as string;
 
     if(req.query.mais){
@@ -35,7 +35,7 @@ export const calendario = async(req:Request,res:Response)=>{
         numMonth--;
         month = months[numMonth] as string;
     } 
-    if(req.query.menos && numMonth===0){
+    else if(req.query.menos && numMonth===0){
         numMonth=11;
         year--;
         month = months[numMonth] as string;

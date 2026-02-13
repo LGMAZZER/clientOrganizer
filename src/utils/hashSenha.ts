@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 
 // Altere a senha aqui
-const senha = "";
+const senha = "teste@12345";
 
 async function gerarHash() {
     const hash = await bcrypt.hash(senha, 10);
