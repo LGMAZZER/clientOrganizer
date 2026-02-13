@@ -255,7 +255,7 @@ Stores files attached to cases.
 | `id` | INT (PK) | Unique identifier |
 | `processo_id` | INT | Related case ID |
 | `nome_original` | VARCHAR | Original filename |
-| `nome_salvo` | VARCHAR | Unique name (UUID) on server |
+| `nome_salvo` | VARCHAR | Unique name (crypto.randomUUID()) on server |
 | `tipo` | VARCHAR | MIME type |
 | `tamanho` | INT | Size in bytes |
 | `caminho` | VARCHAR | Server path |
@@ -411,7 +411,7 @@ INSERT INTO users (email, senha, nome) VALUES (
 - **Upload**: PDF, DOC, DOCX, JPG, PNG
 - **Limit**: 500MB per file
 - **Organization**: files separated by case folder
-- **Unique names**: UUID usage to avoid conflicts
+- **Unique names**: crypto.randomUUID() usage to avoid conflicts
 - **Download**: direct file access
 - **Deletion**: removes file from disk and database
 
