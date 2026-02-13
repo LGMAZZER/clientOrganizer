@@ -52,7 +52,7 @@ Web system developed in Node.js/TypeScript for managing clients and legal cases,
 |------------|---------|-------------|
 | **Mustache-Express** | 1.3.2 | Template Engine |
 | **Multer** | 2.0.2 | File Upload |
-| **UUID** | 13.0.0 | Unique Filename Generation |
+
 
 ### Utilities
 | Technology | Version | Description |
@@ -89,7 +89,8 @@ node copy/
     │   ├── calendarioController.ts # Event calendar
     │   ├── clienteController.ts    # Client/case CRUD
     │   ├── homeController.ts       # Main dashboard
-    │   └── loginContoller.ts       # Authentication
+    │   ├── loginContoller.ts       # Authentication
+    │   └── meetingsController.ts   # Meetings management
     │
     ├── instances/
     │   └── mysql.ts        # Database connection
@@ -97,6 +98,7 @@ node copy/
     ├── models/             # Sequelize models
     │   ├── Arquivo.ts      # File model
     │   ├── Cliente.ts      # Client/case model
+    │   ├── Meetings.ts     # Meetings model
     │   └── Users.ts        # User model
     │
     ├── routes/
@@ -121,6 +123,8 @@ node copy/
         │   ├── home.mustache
         │   ├── login.mustache
         │   ├── loginErrado.mustache
+        │   ├── meetingAdd.mustache
+        │   ├── meetingDelete.mustache
         │   └── processoEdit.mustache
         │
         └── partials/       # Reusable components
@@ -269,6 +273,16 @@ Stores system users.
 | `nome` | VARCHAR | User name |
 | `criado_em` | DATETIME | Creation date |
 
+### Table: `meetings`
+
+Stores meetings and appointments.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | INT (PK) | Unique identifier |
+| `name_meeting` | VARCHAR | Meeting name/description |
+| `date_meeting` | DATE | Meeting date |
+
 ### SQL Script to Create Tables
 
 ```sql
@@ -330,6 +344,13 @@ CREATE TABLE arquivos_processos (
     caminho VARCHAR(500),
     criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (processo_id) REFERENCES clientes_processos(id) ON DELETE CASCADE
+);
+
+-- Meetings table
+CREATE TABLE meetings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name_meeting VARCHAR(255) NOT NULL,
+    date_meeting DATE NOT NULL
 );
 
 -- Create initial user (password: admin123)
@@ -394,6 +415,11 @@ INSERT INTO users (email, senha, nome) VALUES (
 - **Download**: direct file access
 - **Deletion**: removes file from disk and database
 
+### Meetings Management
+- **Create meetings**: add new meetings/appointments
+- **View in calendar**: meetings displayed in the calendar view
+- **Delete meetings**: remove scheduled meetings
+
 ---
 
 ## API Routes
@@ -448,6 +474,14 @@ INSERT INTO users (email, senha, nome) VALUES (
 | POST | `/uploadnovoarquivo/:id` | Upload file |
 | GET | `/arquivodelete/:id` | Deletion confirmation |
 | DELETE | `/arquivodelete/:id` | Delete file |
+
+### Meetings
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/novareuniao` | New meeting form |
+| POST | `/novareuniao` | Create meeting |
+| GET | `/deletarreuniao/:id` | Deletion confirmation |
+| DELETE | `/deletarreuniao/:id` | Delete meeting |
 
 ---
 
