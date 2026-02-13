@@ -66,7 +66,7 @@ Web system developed in Node.js/TypeScript for managing clients and legal cases,
 ## Project Architecture
 
 ```
-node copy/
+client-organizer/
 ├── package.json            # Dependencies and scripts
 ├── tsconfig.json           # TypeScript configuration
 ├── README.md               # Documentation
@@ -145,8 +145,8 @@ node copy/
 
 1. **Clone the repository**
 ```bash
-git clone <repository-url>
-cd node\ copy
+git clone https://github.com/LGMAZZER/clientOrganizer
+cd client-organizer
 ```
 
 2. **Install dependencies**
