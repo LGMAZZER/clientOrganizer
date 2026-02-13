@@ -4,7 +4,8 @@
 
 <fieldset>
     <form method="POST" action="/uploadnovoarquivo/{{id}}" enctype="multipart/form-data">
-        <input type="file" id="arquivo" name="arquivo" required>
+        <input type="file" id="arquivo" name="arquivo" multiple required>
+        <p>Você pode selecionar múltiplos arquivos mantendo pressionado Ctrl ao clicar nos arquivos.</p>
         <button type="submit" class="btn-success">Enviar</button>
     </form>
 </fieldset>

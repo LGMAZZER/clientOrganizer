@@ -61,24 +61,33 @@ export const uploadArquivoPost = async(req:Request,res:Response)=>{
             return res.redirect("/");
         }
 
-        if(!req.file){
+        if(!req.files || (req.files as Express.Multer.File[]).length === 0){
             return res.redirect("/");
         }
 
-        await Arquivo.create({
-            processo_id: parseInt(idProcesso as string),
-            nome_original: req.file.originalname,
-            nome_salvo: req.file.filename,
-            tipo: req.file.mimetype,
-            tamanho: req.file.size,
-            caminho: req.file.path.replace('public/', ''),
-        });
+        const files = req.files as Express.Multer.File[];
+        
+        
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            if(file){
+            await Arquivo.create({
+                processo_id: parseInt(idProcesso as string),
+                nome_original: file.originalname,
+                nome_salvo: file.filename,
+                tipo: file.mimetype,
+                tamanho: file.size,
+                caminho: file.path.replace('public/', ''),
+            });
+        }
+        }
 
         res.redirect(`/arquivosprocessos/${idProcesso}`);
 
 
     }catch(error){
-
+        console.error('Erro no upload:', error);
+        res.redirect(`/arquivosprocessos/${idProcesso}`);
     }
 };
 

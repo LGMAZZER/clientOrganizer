@@ -44,7 +44,7 @@ router.get("/errocadastro",clienteController.showCpfResgisterError);
 router.get("/arquivosprocessos/:id",arquivoController.showArquivo);
 
 router.get("/uploadarquivo/:id",arquivoController.uploadArquivoGet);
-router.post("/uploadnovoarquivo/:id",multer.upload.single("arquivo"),arquivoController.uploadArquivoPost);
+router.post("/uploadnovoarquivo/:id",multer.upload.array("arquivo"),arquivoController.uploadArquivoPost);
 
 router.get("/arquivodelete/:id",arquivoController.arquivoDeleteGet);
 router.delete("/arquivodelete/:id",arquivoController.arquivoDeletePost);
