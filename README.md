@@ -282,6 +282,7 @@ Stores meetings and appointments.
 | `id` | INT (PK) | Unique identifier |
 | `name_meeting` | VARCHAR | Meeting name/description |
 | `date_meeting` | DATE | Meeting date |
+| `link_meeting` | VARCHAR | Meeting Link |
 
 ### SQL Script to Create Tables
 
@@ -350,7 +351,8 @@ CREATE TABLE arquivos_processos (
 CREATE TABLE meetings (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name_meeting VARCHAR(255) NOT NULL,
-    date_meeting DATE NOT NULL
+    date_meeting DATE NOT NULL,
+    link_meeting varchar(255)
 );
 
 -- Create initial user (password: admin123)
@@ -400,6 +402,7 @@ INSERT INTO users (email, senha, nome) VALUES (
   - Payment dates
   - Responses, arguments, appeals, and sentences
   - Final judgments
+  - Meetings
 
 ### Dashboard (Home)
 - Shows events for the next 7-14 days
