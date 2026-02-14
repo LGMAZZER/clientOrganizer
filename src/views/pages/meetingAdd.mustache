@@ -1,6 +1,6 @@
 {{>partials/header}}
 
-<h2>Adicionar Cliente</h2>
+<h2>Adicionar Reunião</h2>
 
 <fieldset>
     <form method="POST" action="/novareuniao">
@@ -9,6 +9,10 @@
 
     <label for="data_nascimento">Data da Reunião:</label>
     <input type="datetime-local" id="data_reuniao" name="data_reuniao">
+
+    <label for="data_nascimento">Link da Reunião:</label>
+    <input type="text" id="link_reuniao" name="link_reuniao">
+
 
             <button type="submit" class="btn-success">Enviar Cadastro</button>
     </form>

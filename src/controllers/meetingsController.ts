@@ -14,7 +14,8 @@ export const cadastrarReuniaoPost = async(req:Request,res:Response)=>{
 
         const dados={
             name_meeting: req.body.reuniao,
-            date_meeting: req.body.data_reuniao
+            date_meeting: req.body.data_reuniao,
+            link_meeting: req.body.link_reuniao
 
 
         };

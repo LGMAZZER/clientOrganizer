@@ -110,6 +110,11 @@
 
             {{#dia_meeting}}
             <strong>{{name_meeting}} Reunião Dia:{{dia_meeting}} Horário {{hora_meeting}}:{{minuto_meeting}} {{semana_meeting}} 
+            {{#link_meeting}}
+            <a href = "{{link_meeting}}" target="_blank" rel="noopener noreferrer">
+                    <button type="button">Ir Para Reunião</button>
+                    </a>
+            {{/link_meeting}}
             <a href ="/deletarreuniao/{{id}}">
             <button type="button">Deletar</button>
             </a>
