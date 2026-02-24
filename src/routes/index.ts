@@ -53,7 +53,9 @@ router.get("/novareuniao",meetingsController.cadastrarReuniaoGet);
 router.post("/novareuniao",meetingsController.cadastrarReuniaoPost);
 router.get("/deletarreuniao/:id",meetingsController.deletarReuniaoGet);
 router.delete("/deletarreuniao/:id",meetingsController.deletarReuniao);
-
+router.get("/editarreuniao/:id",meetingsController.editarReuniaoGet);
+router.put("/editarreuniao/:id",meetingsController.editarReuniaoPost);
+router.get("/configreuniao/:id",meetingsController.configReuniao);
  
 
 

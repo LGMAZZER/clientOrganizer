@@ -1,0 +1,27 @@
+{{>partials/header}}
+
+<h2>Editar Reunião</h2>
+
+<fieldset>
+    <form method="POST" action="/editarreuniao/{{meeting.id}}?_method=PUT">
+    <label for="reuniao">Reunião:</label>
+    <input type="text" id="reuniao" name="reuniao" value ="{{meeting.name_meeting}}" required>
+
+    <label for="data_reuniao">Data da Reunião:</label>
+    <input type="datetime-local" id="data_reuniao" name="data_reuniao" value ="{{meeting.date_meeting}}">
+
+    <label for="link_reuniao">Link da Reunião:</label>
+    <input type="text" id="link_reuniao" name="link_reuniao" value="{{meeting.link_meeting}}">
+
+
+            <button type="submit" class="btn-success">Enviar</button>
+    </form>
+</fieldset>
+
+<div class="action-buttons">
+    <form action="/configreuniao/{{meeting.id}}">
+        <button type="submit" class="btn-secondary">Cancelar</button>
+    </form>
+</div>
+
+{{>partials/footer}}

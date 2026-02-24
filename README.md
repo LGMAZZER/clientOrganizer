@@ -317,7 +317,7 @@ CREATE TABLE clientes_processos (
     empresa_trabalho VARCHAR(255),
     endereco_comercial TEXT,
     telefone_comercial VARCHAR(20),
-    numero_processo VARCHAR(100) UNIQUE,
+    numero_processo VARCHAR(100),
     acao VARCHAR(255),
     vara VARCHAR(100),
     data_protocolo DATE,

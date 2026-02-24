@@ -105,22 +105,24 @@
     </section>
 
     <section>
-            <h3>Reuniões</h3>
+        <h3>Reuniões</h3>
+        <ul>
             {{#clientes}}
-
-            {{#dia_meeting}}
-            <strong>{{name_meeting}} Reunião Dia:{{dia_meeting}} Horário {{hora_meeting}}:{{minuto_meeting}} {{semana_meeting}} 
-            {{#link_meeting}}
-            <a href = "{{link_meeting}}" target="_blank" rel="noopener noreferrer">
-                    <button type="button">Ir Para Reunião</button>
+                {{#dia_meeting}}
+                <li>
+                    <strong>{{name_meeting}}</strong> - Dia: {{dia_meeting}} | Horário: {{hora_meeting}}:{{minuto_meeting}} {{semana_meeting}}
+                    {{#link_meeting}}
+                    <a href="{{link_meeting}}" target="_blank" rel="noopener noreferrer">
+                        <button type="button">Ir Para Reunião</button>
                     </a>
-            {{/link_meeting}}
-            <a href ="/deletarreuniao/{{id}}">
-            <button type="button">Deletar</button>
-            </a>
-            {{/dia_meeting}}
-
+                    {{/link_meeting}}
+                    <a href="/configreuniao/{{id}}">
+                        <button type="button">Configurações</button>
+                    </a>
+                </li>
+                {{/dia_meeting}}
             {{/clientes}}
+        </ul>
     </section>
     
 
